@@ -37,11 +37,6 @@ class LLMs_TXT_Admin {
         // Add Settings link
         $settings_link = '<a href="' . admin_url('options-general.php?page=llms-txt-settings') . '">' . __('Settings', 'llms-txt-wordpress') . '</a>';
         array_unshift($links, $settings_link);
-        
-        // Add Donate link
-        $donate_link = '<a href="https://buymeacoffee.com/nutttaro" target="_blank" style="color: #d63638; font-weight: 600;">' . __('Donate', 'llms-txt-wordpress') . '</a>';
-        $links[] = $donate_link;
-        
         return $links;
     }
     
