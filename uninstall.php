@@ -1,9 +1,8 @@
 <?php
 /**
- * Uninstall LLMs.txt Generator Plugin
- * 
- * This file is executed when the plugin is uninstalled.
- * It removes all plugin data from the database.
+ * Uninstall LLMs.txt Builder Plugin
+ *
+ * @package LLMs_TXT_Generator
  */
 
 // If uninstall not called from WordPress, exit
@@ -12,10 +11,10 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // Delete plugin options
-delete_option('llms_txt_options');
+delete_option('llms_txt_builder_options');
 
-// Clear any cached LLMs.txt content
-delete_transient('llms_txt_cache');
+// Clear any cached data
+delete_transient('llms_txt_builder_cache');
 
 // Flush rewrite rules
 flush_rewrite_rules(); 

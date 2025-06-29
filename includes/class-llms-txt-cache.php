@@ -1,10 +1,12 @@
 <?php
 /**
- * Cache functionality for LLMs.txt Generator
- * 
+ * Cache management for LLMs.txt Generator
+ *
  * @package LLMs_TXT_Generator
  * @since 1.0.0
  */
+
+namespace NT\LLMSTXT;
 
 // Prevent direct access
 if (!defined('ABSPATH')) {
@@ -12,7 +14,9 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Cache class for LLMs.txt Generator
+ * Cache management class
+ *
+ * @since 1.0.0
  */
 class LLMs_TXT_Cache {
     
@@ -27,34 +31,34 @@ class LLMs_TXT_Cache {
      * Clear cache
      */
     public function clear_cache() {
-        return delete_transient(LLMS_TXT_CACHE_KEY);
+        return delete_transient(LLMS_TXT_BUILDER_CACHE_KEY);
     }
     
     /**
      * Get cached content
      */
     public function get_cached_content() {
-        return get_transient(LLMS_TXT_CACHE_KEY);
+        return get_transient(LLMS_TXT_BUILDER_CACHE_KEY);
     }
     
     /**
      * Set cached content
      */
     public function set_cached_content($content) {
-        return set_transient(LLMS_TXT_CACHE_KEY, $content, LLMS_TXT_CACHE_DURATION);
+        return set_transient(LLMS_TXT_BUILDER_CACHE_KEY, $content, LLMS_TXT_BUILDER_CACHE_DURATION);
     }
     
     /**
-     * Check if content is cached
+     * Check if cache exists
      */
-    public function is_cached() {
-        return get_transient(LLMS_TXT_CACHE_KEY) !== false;
+    public function has_cache() {
+        return get_transient(LLMS_TXT_BUILDER_CACHE_KEY) !== false;
     }
     
     /**
      * Get cache duration
      */
     public function get_cache_duration() {
-        return LLMS_TXT_CACHE_DURATION;
+        return LLMS_TXT_BUILDER_CACHE_DURATION;
     }
 } 

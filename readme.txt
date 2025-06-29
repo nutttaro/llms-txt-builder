@@ -1,4 +1,4 @@
-=== LLMs.txt Generator ===
+=== LLMs.txt Builder ===
 Contributors: nutttaro
 Donate link: https://buymeacoffee.com/nutttaro
 Tags: llms, ai, seo, sitemap, content-discovery
@@ -13,7 +13,7 @@ Generate an LLMs.txt file that helps AI models and large language models underst
 
 == Description ==
 
-**LLMs.txt Generator** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
+**LLMs.txt Builder** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
 
 = Key Features =
 
@@ -44,7 +44,6 @@ The file provides context and instructions to AI models about your project, help
 # Generated on: 2024-01-15 10:30:00
 # URL: https://example.com
 
-# Project Overview
 This is a WordPress website with the following content structure:
 
 # Pages
@@ -92,7 +91,7 @@ The LLMs.txt content is cached for 24 hours by default. This improves performanc
 
 == Installation ==
 
-1. Upload the `llms-txt-generator` folder to your `/wp-content/plugins/` directory
+1. Upload the `llms-txt-builder` folder to your `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to Settings > LLMs.txt to configure the plugin
 
@@ -147,7 +146,7 @@ Yes! There's a "Clear Cache" button in the plugin settings page, and you can als
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of LLMs.txt Generator plugin.
+Initial release of LLMs.txt Builder plugin.
 
 == Requirements ==
 
