@@ -1,0 +1,189 @@
+# Copyright (C) 2024 LLMs.txt WordPress
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: LLMs.txt for WordPress and WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/llms-txt-wordpress\n"
+"POT-Creation-Date: 2024-01-15 10:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: includes/class-llms-txt-admin.php:33
+msgid "LLMs.txt Settings"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:34
+msgid "LLMs.txt"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:49
+msgid "General Settings"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:59
+msgid "Include %s"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:91
+msgid "Include Pages"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:98
+msgid "Include static pages"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:104
+msgid "Include Archives"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:111
+msgid "Include archive pages"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:117
+msgid "Include Author Pages"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:124
+msgid "Include author archive pages"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:133
+msgid "Custom Overview Text"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:138
+msgid "Custom text to display in the Project Overview section of LLMs.txt. Leave empty to use default text."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:174
+msgid "Select which content types to include in your LLMs.txt file:"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:201
+msgid "LLMs.txt Settings"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:213
+msgid "Generate LLMs.txt"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:214
+msgid "Click the button below to manually generate the LLMs.txt file:"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:217
+msgid "Generate LLMs.txt"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:221
+msgid "Clear Cache"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:228
+msgid "LLMs.txt URL"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:229
+msgid "Your LLMs.txt file is available at:"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:232
+msgid "View LLMs.txt"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:241
+msgid "Generating..."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:242
+msgid "Generating LLMs.txt file..."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:253
+msgid "LLMs.txt file generated successfully!"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:255
+msgid "Error generating LLMs.txt file."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:259
+msgid "Error generating LLMs.txt file."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:262
+msgid "Generate LLMs.txt"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:271
+msgid "Clearing..."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:282
+msgid "Cache cleared successfully!"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:284
+msgid "Error clearing cache."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:288
+msgid "Error clearing cache."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:291
+msgid "Clear Cache"
+msgstr ""
+
+#: includes/class-llms-txt-meta-box.php:36
+msgid "LLMs.txt Cache"
+msgstr ""
+
+#: includes/class-llms-txt-meta-box.php:55
+msgid "Clear LLMs.txt cache when this post is updated"
+msgstr ""
+
+#: includes/class-llms-txt-meta-box.php:57
+msgid "Check this box to automatically clear the LLMs.txt cache when this post is saved."
+msgstr ""
+
+#: includes/class-llms-txt-meta-box.php:65
+msgid "Exclude this page from LLMs.txt"
+msgstr ""
+
+#: includes/class-llms-txt-meta-box.php:67
+msgid "Check this box to exclude this page from appearing in the generated LLMs.txt file."
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:45
+msgid "Settings"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:49
+msgid "Donate"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:71
+msgid "View LLMs.txt WordPress documentation"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:76
+msgid "Support"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:77
+msgid "Visit support forum"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:82
+msgid "Rate ★★★★★"
+msgstr ""
+
+#: includes/class-llms-txt-admin.php:83
+msgid "Rate LLMs.txt WordPress on WordPress.org"
+msgstr "" 
