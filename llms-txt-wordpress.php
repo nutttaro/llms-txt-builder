@@ -13,7 +13,6 @@
  * Requires at least: 6.0
  * Tested up to: 6.8
  * Requires PHP: 7.4
- * Network: false
  */
 
 // Prevent direct access
@@ -27,7 +26,7 @@ define('LLMS_TXT_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('LLMS_TXT_PLUGIN_FILE', __FILE__);
 define('LLMS_TXT_PLUGIN_VERSION', '1.0.0');
 define('LLMS_TXT_CACHE_KEY', 'llms_txt_cache');
-define('LLMS_TXT_CACHE_DURATION', 3600); // 1 hour
+define('LLMS_TXT_CACHE_DURATION', DAY_IN_SECONDS);
 
 /**
  * Main plugin initialization

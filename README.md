@@ -8,6 +8,7 @@ This plugin creates an LLMs.txt file (similar to robots.txt) that helps AI model
 
 ## Features
 
+- **Post and Page Support**: Automatically includes page, post, categories, and tags
 - **WooCommerce Support**: Automatically includes product pages, categories, and tags
 - **Custom Post Types**: Configurable support for any custom post types
 - **Custom Taxonomies**: Includes all public taxonomies and their terms
@@ -15,7 +16,6 @@ This plugin creates an LLMs.txt file (similar to robots.txt) that helps AI model
 - **Caching System**: LLMs.txt content is cached for performance
 - **Cache Management**: Manual cache clearing and automatic clearing on content updates
 - **Meta Box Integration**: Option to clear cache when individual posts are updated
-- **AJAX Support**: Non-blocking generation and cache clearing
 
 ## Installation
 
@@ -60,39 +60,39 @@ https://yourdomain.com/llms.txt
 ```
 # LLMs.txt for My WordPress Site
 # Generated on: 2024-01-15 10:30:00
-# URL: https://mywebsite.com
+# URL: https://example.com
 
 # Project Overview
 This is a WordPress website with the following content structure:
 
 # Homepage
-https://mywebsite.com
+https://example.com
 
 # Pages
-https://mywebsite.com/about/
-https://mywebsite.com/contact/
-https://mywebsite.com/privacy-policy/
+https://example.com/about/
+https://example.com/contact/
+https://example.com/privacy-policy/
 
 # Posts
-https://mywebsite.com/2024/01/15/my-first-post/
-https://mywebsite.com/2024/01/14/another-post/
+https://example.com/2024/01/15/my-first-post/
+https://example.com/2024/01/14/another-post/
 
 # Categories
-https://mywebsite.com/category/technology/
-https://mywebsite.com/category/business/
+https://example.com/category/technology/
+https://example.com/category/business/
 
 # Tags
-https://mywebsite.com/tag/wordpress/
-https://mywebsite.com/tag/development/
+https://example.com/tag/wordpress/
+https://example.com/tag/development/
 
 # WooCommerce
 ## Product Categories
-https://mywebsite.com/product-category/electronics/
-https://mywebsite.com/product-category/clothing/
+https://example.com/product-category/electronics/
+https://example.com/product-category/clothing/
 
 ## Products
-https://mywebsite.com/product/sample-product/
-https://mywebsite.com/product/another-product/
+https://example.com/product/sample-product/
+https://example.com/product/another-product/
 
 # End of LLMs.txt
 ```
@@ -122,24 +122,9 @@ The LLMs.txt content is cached for 1 hour by default. This improves performance 
 - A post with cache clearing enabled is updated
 - Manual cache clearing is triggered
 
-## Hooks and Filters
-
-The plugin provides several hooks for developers:
-
-### Actions
-- `llms_txt_before_generate`: Fired before LLMs.txt generation
-- `llms_txt_after_generate`: Fired after LLMs.txt generation
-- `llms_txt_cache_cleared`: Fired when cache is cleared
-
-### Filters
-- `llms_txt_content`: Modify the generated LLMs.txt content
-- `llms_txt_cache_duration`: Change cache duration (default: 3600 seconds)
-- `llms_txt_post_types`: Modify which post types are included
-- `llms_txt_taxonomies`: Modify which taxonomies are included
-
 ## Requirements
 
-- WordPress 5.0 or higher
+- WordPress 6.0 or higher
 - PHP 7.4 or higher
 - WooCommerce 3.0 or higher (for WooCommerce features)
 
@@ -155,7 +140,7 @@ The plugin provides several hooks for developers:
 
 ## Support
 
-For support, feature requests, or bug reports, please visit the plugin's GitHub repository or contact the developer.
+For support, feature requests, or bug reports, please visit the plugin's contact the developer.
 
 ## License
 
