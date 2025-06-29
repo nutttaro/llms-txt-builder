@@ -106,7 +106,7 @@ class LLMs_TXT_Generator {
      * Initialize plugin
      */
     public function init() {
-        load_plugin_textdomain('llms-txt-wordpress', false, dirname(plugin_basename(LLMS_TXT_PLUGIN_FILE)) . '/languages');
+        load_plugin_textdomain('llms-txt-generator', false, dirname(plugin_basename(LLMS_TXT_PLUGIN_FILE)) . '/languages');
     }
     
     /**
@@ -118,7 +118,7 @@ class LLMs_TXT_Generator {
             
             header('Content-Type: text/plain; charset=utf-8');
             header('Cache-Control: public, max-age=' . LLMS_TXT_CACHE_DURATION);
-            echo $content;
+            echo wp_kses_post($content);
             exit;
         }
     }

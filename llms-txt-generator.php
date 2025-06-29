@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name: LLMs.txt for WordPress and WooCommerce
- * Plugin URI: https://wordpress.org/plugins/llms-txt-wordpress
+ * Plugin Name: LLMs.txt Generator
+ * Plugin URI: https://wordpress.org/plugins/llms-txt-generator
  * Description: This plugin generates an LLMs.txt file that includes all links from the website, with support for WooCommerce, custom post types, and custom taxonomies.
  * Version: 1.0.0
  * Author: nutttaro
  * Author URI: https://nutttaro.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: llms-txt-wordpress
+ * Text Domain: llms-txt-generator
  * Domain Path: /languages
  * Requires at least: 6.0
  * Tested up to: 6.8
@@ -26,7 +26,7 @@ define('LLMS_TXT_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('LLMS_TXT_PLUGIN_FILE', __FILE__);
 define('LLMS_TXT_PLUGIN_VERSION', '1.0.0');
 define('LLMS_TXT_CACHE_KEY', 'llms_txt_cache');
-define('LLMS_TXT_CACHE_DURATION', DAY_IN_SECONDS);
+define('LLMS_TXT_CACHE_DURATION', 86400); // 24 hours
 
 /**
  * Main plugin initialization

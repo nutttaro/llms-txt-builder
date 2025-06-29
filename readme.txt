@@ -1,7 +1,7 @@
-=== LLMs.txt for WordPress and WooCommerce ===
+=== LLMs.txt Generator ===
 Contributors: nutttaro
 Donate link: https://buymeacoffee.com/nutttaro
-Tags: llms, ai, seo, woocommerce, sitemap, robots, content-discovery
+Tags: llms, ai, seo, sitemap, content-discovery
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -13,7 +13,7 @@ Generate an LLMs.txt file that helps AI models and large language models underst
 
 == Description ==
 
-**LLMs.txt for WordPress and WooCommerce** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
+**LLMs.txt Generator** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
 
 = Key Features =
 
@@ -85,7 +85,7 @@ The plugin automatically detects and allows configuration for:
 
 = Caching =
 
-The LLMs.txt content is cached for 1 hour by default. This improves performance and reduces server load. The cache is automatically cleared when:
+The LLMs.txt content is cached for 24 hours by default. This improves performance and reduces server load. The cache is automatically cleared when:
 * Plugin settings are updated
 * A post with cache clearing enabled is updated
 * Manual cache clearing is triggered
@@ -116,7 +116,7 @@ Yes! Go to Settings > LLMs.txt to configure which post types, taxonomies, pages,
 
 = How often is the LLMs.txt file updated? =
 
-The content is cached for 1 hour by default. You can manually regenerate it anytime from the settings page, or it will automatically update when you modify the plugin settings.
+The content is cached for 24 hours by default. You can manually regenerate it anytime from the settings page, or it will automatically update when you modify the plugin settings.
 
 = Does this affect my website's performance? =
 
@@ -147,7 +147,7 @@ Yes! There's a "Clear Cache" button in the plugin settings page, and you can als
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of LLMs.txt for WordPress and WooCommerce plugin.
+Initial release of LLMs.txt Generator plugin.
 
 == Requirements ==
 
@@ -157,11 +157,11 @@ Initial release of LLMs.txt for WordPress and WooCommerce plugin.
 
 == Support ==
 
-For support, feature requests, or bug reports, please visit the plugin's contact the developer.
+For support, feature requests, or bug reports, please contact the developer.
 
 == Credits ==
 
-Developed for WordPress and WooCommerce communities to help AI models better understand website content and structure.
+Developed for the WordPress community to help AI models better understand website content and structure.
 
 == License ==
 

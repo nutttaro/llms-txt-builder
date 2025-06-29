@@ -34,7 +34,7 @@ class LLMs_TXT_Meta_Box {
         foreach ($post_types as $post_type) {
             add_meta_box(
                 'llms_txt_cache_clear',
-                __('LLMs.txt Cache', 'llms-txt-wordpress'),
+                esc_html__('LLMs.txt Cache', 'llms-txt-generator'),
                 array($this, 'meta_box_callback'),
                 $post_type,
                 'side',
@@ -55,17 +55,17 @@ class LLMs_TXT_Meta_Box {
         <div style="margin-bottom: 15px;">
             <label>
                 <input type="checkbox" name="llms_txt_clear_cache" value="1" <?php checked($clear_cache, '1'); ?> />
-                <?php _e('Clear LLMs.txt cache when this post is updated', 'llms-txt-wordpress'); ?>
+                <?php esc_html_e('Clear LLMs.txt cache when this post is updated', 'llms-txt-generator'); ?>
             </label>
-            <p class="description"><?php _e('Check this box to automatically clear the LLMs.txt cache when this post is saved.', 'llms-txt-wordpress'); ?></p>
+            <p class="description"><?php esc_html_e('Check this box to automatically clear the LLMs.txt cache when this post is saved.', 'llms-txt-generator'); ?></p>
         </div>
         
         <div>
             <label>
                 <input type="checkbox" name="llms_txt_ignore_page" value="1" <?php checked($ignore_page, '1'); ?> />
-                <?php _e('Exclude this page from LLMs.txt', 'llms-txt-wordpress'); ?>
+                <?php esc_html_e('Exclude this page from LLMs.txt', 'llms-txt-generator'); ?>
             </label>
-            <p class="description"><?php _e('Check this box to exclude this page from appearing in the generated LLMs.txt file.', 'llms-txt-wordpress'); ?></p>
+            <p class="description"><?php esc_html_e('Check this box to exclude this page from appearing in the generated LLMs.txt file.', 'llms-txt-generator'); ?></p>
         </div>
         <?php
     }
@@ -75,7 +75,7 @@ class LLMs_TXT_Meta_Box {
      */
     public function save_post_meta($post_id) {
         // Check nonce
-        if (!isset($_POST['llms_txt_meta_box_nonce']) || !wp_verify_nonce($_POST['llms_txt_meta_box_nonce'], 'llms_txt_meta_box')) {
+        if (!isset($_POST['llms_txt_meta_box_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['llms_txt_meta_box_nonce'])), 'llms_txt_meta_box')) {
             return;
         }
         

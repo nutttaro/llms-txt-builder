@@ -35,7 +35,7 @@ class LLMs_TXT_Admin {
      */
     public function add_plugin_action_links($links) {
         // Add Settings link
-        $settings_link = '<a href="' . admin_url('options-general.php?page=llms-txt-settings') . '">' . __('Settings', 'llms-txt-wordpress') . '</a>';
+        $settings_link = '<a href="' . admin_url('options-general.php?page=llms-txt-settings') . '">' . __('Settings', 'llms-txt-generator') . '</a>';
         array_unshift($links, $settings_link);
         return $links;
     }
@@ -45,8 +45,8 @@ class LLMs_TXT_Admin {
      */
     public function add_admin_menu() {
         add_options_page(
-            __('LLMs.txt Settings', 'llms-txt-wordpress'),
-            __('LLMs.txt', 'llms-txt-wordpress'),
+            __('LLMs.txt Settings', 'llms-txt-generator'),
+            __('LLMs.txt', 'llms-txt-generator'),
             'manage_options',
             'llms-txt-settings',
             array($this, 'admin_page')
@@ -61,7 +61,7 @@ class LLMs_TXT_Admin {
         
         add_settings_section(
             'llms_txt_general',
-            __('General Settings', 'llms-txt-wordpress'),
+            __('General Settings', 'llms-txt-generator'),
             array($this, 'general_section_callback'),
             'llms_txt_settings'
         );
@@ -71,7 +71,8 @@ class LLMs_TXT_Admin {
         foreach ($post_types as $post_type) {
             add_settings_field(
                 'post_type_' . $post_type->name,
-                sprintf(__('Include %s', 'llms-txt-wordpress'), $post_type->labels->name),
+                /* translators: %s: post type name */
+                sprintf(esc_html__('Include %s', 'llms-txt-generator'), $post_type->labels->name),
                 array($this, 'checkbox_field_callback'),
                 'llms_txt_settings',
                 'llms_txt_general',
@@ -88,7 +89,8 @@ class LLMs_TXT_Admin {
         foreach ($taxonomies as $taxonomy) {
             add_settings_field(
                 'taxonomy_' . $taxonomy->name,
-                sprintf(__('Include %s', 'llms-txt-wordpress'), $taxonomy->labels->name),
+                /* translators: %s: taxonomy name */
+                sprintf(esc_html__('Include %s', 'llms-txt-generator'), $taxonomy->labels->name),
                 array($this, 'checkbox_field_callback'),
                 'llms_txt_settings',
                 'llms_txt_general',
@@ -103,52 +105,52 @@ class LLMs_TXT_Admin {
         // Additional settings
         add_settings_field(
             'include_pages',
-            __('Include Pages', 'llms-txt-wordpress'),
+            __('Include Pages', 'llms-txt-generator'),
             array($this, 'checkbox_field_callback'),
             'llms_txt_settings',
             'llms_txt_general',
             array(
                 'field' => 'include_pages',
                 'value' => '1',
-                'label' => __('Include static pages', 'llms-txt-wordpress')
+                'label' => __('Include static pages', 'llms-txt-generator')
             )
         );
         
         add_settings_field(
             'include_archives',
-            __('Include Archives', 'llms-txt-wordpress'),
+            __('Include Archives', 'llms-txt-generator'),
             array($this, 'checkbox_field_callback'),
             'llms_txt_settings',
             'llms_txt_general',
             array(
                 'field' => 'include_archives',
                 'value' => '1',
-                'label' => __('Include archive pages', 'llms-txt-wordpress')
+                'label' => __('Include archive pages', 'llms-txt-generator')
             )
         );
         
         add_settings_field(
             'include_author_pages',
-            __('Include Author Pages', 'llms-txt-wordpress'),
+            __('Include Author Pages', 'llms-txt-generator'),
             array($this, 'checkbox_field_callback'),
             'llms_txt_settings',
             'llms_txt_general',
             array(
                 'field' => 'include_author_pages',
                 'value' => '1',
-                'label' => __('Include author archive pages', 'llms-txt-wordpress')
+                'label' => __('Include author archive pages', 'llms-txt-generator')
             )
         );
         
         add_settings_field(
             'custom_overview_text',
-            __('Custom Overview Text', 'llms-txt-wordpress'),
+            __('Custom Overview Text', 'llms-txt-generator'),
             array($this, 'textarea_field_callback'),
             'llms_txt_settings',
             'llms_txt_general',
             array(
                 'field' => 'custom_overview_text',
-                'description' => __('Custom text to display in the Project Overview section of LLMs.txt. Leave empty to use default text.', 'llms-txt-wordpress')
+                'description' => __('Custom text to display in the Project Overview section of LLMs.txt. Leave empty to use default text.', 'llms-txt-generator')
             )
         );
     }
@@ -202,7 +204,7 @@ class LLMs_TXT_Admin {
      * General section callback
      */
     public function general_section_callback() {
-        echo '<p>' . __('Select which content types to include in your LLMs.txt file:', 'llms-txt-wordpress') . '</p>';
+        echo '<p>' . esc_html__('Select which content types to include in your LLMs.txt file:', 'llms-txt-generator') . '</p>';
     }
     
     /**
@@ -241,7 +243,7 @@ class LLMs_TXT_Admin {
     public function admin_page() {
         ?>
         <div class="wrap">
-            <h1><?php _e('LLMs.txt Settings', 'llms-txt-wordpress'); ?></h1>
+            <h1><?php esc_html_e('LLMs.txt Settings', 'llms-txt-generator'); ?></h1>
             
             <form method="post" action="options.php">
                 <?php
@@ -253,26 +255,26 @@ class LLMs_TXT_Admin {
             
             <hr>
             
-            <h2><?php _e('Generate LLMs.txt', 'llms-txt-wordpress'); ?></h2>
-            <p><?php _e('Click the button below to manually generate the LLMs.txt file:', 'llms-txt-wordpress'); ?></p>
+            <h2><?php esc_html_e('Generate LLMs.txt', 'llms-txt-generator'); ?></h2>
+            <p><?php esc_html_e('Click the button below to manually generate the LLMs.txt file:', 'llms-txt-generator'); ?></p>
             
             <button type="button" id="generate-llms-txt" class="button button-primary">
-                <?php _e('Generate LLMs.txt', 'llms-txt-wordpress'); ?>
+                <?php esc_html_e('Generate LLMs.txt', 'llms-txt-generator'); ?>
             </button>
             
             <button type="button" id="clear-cache" class="button button-secondary">
-                <?php _e('Clear Cache', 'llms-txt-wordpress'); ?>
+                <?php esc_html_e('Clear Cache', 'llms-txt-generator'); ?>
             </button>
             
             <div id="llms-txt-status" style="margin-top: 10px;"></div>
             
             <hr>
             
-            <h2><?php _e('LLMs.txt URL', 'llms-txt-wordpress'); ?></h2>
-            <p><?php _e('Your LLMs.txt file is available at:', 'llms-txt-wordpress'); ?></p>
+            <h2><?php esc_html_e('LLMs.txt URL', 'llms-txt-generator'); ?></h2>
+            <p><?php esc_html_e('Your LLMs.txt file is available at:', 'llms-txt-generator'); ?></p>
             <code><?php echo esc_url(home_url('/llms.txt')); ?></code>
             
-            <p><a href="<?php echo esc_url(home_url('/llms.txt')); ?>" target="_blank" class="button"><?php _e('View LLMs.txt', 'llms-txt-wordpress'); ?></a></p>
+            <p><a href="<?php echo esc_url(home_url('/llms.txt')); ?>" target="_blank" class="button"><?php esc_html_e('View LLMs.txt', 'llms-txt-generator'); ?></a></p>
         </div>
         
         <script>
@@ -281,28 +283,28 @@ class LLMs_TXT_Admin {
                 var button = $(this);
                 var status = $('#llms-txt-status');
                 
-                button.prop('disabled', true).text('<?php _e('Generating...', 'llms-txt-wordpress'); ?>');
-                status.html('<p><?php _e('Generating LLMs.txt file...', 'llms-txt-wordpress'); ?></p>');
+                button.prop('disabled', true).text('<?php echo esc_js(__('Generating...', 'llms-txt-generator')); ?>');
+                status.html('<p><?php echo esc_js(__('Generating LLMs.txt file...', 'llms-txt-generator')); ?></p>');
                 
                 $.ajax({
                     url: ajaxurl,
                     type: 'POST',
                     data: {
                         action: 'generate_llms_txt',
-                        nonce: '<?php echo wp_create_nonce('llms_txt_generate'); ?>'
+                        nonce: '<?php echo esc_js(wp_create_nonce('llms_txt_generate')); ?>'
                     },
                     success: function(response) {
                         if (response.success) {
-                            status.html('<p style="color: green;"><?php _e('LLMs.txt file generated successfully!', 'llms-txt-wordpress'); ?></p>');
+                            status.html('<p style="color: green;"><?php echo esc_js(__('LLMs.txt file generated successfully!', 'llms-txt-generator')); ?></p>');
                         } else {
-                            status.html('<p style="color: red;"><?php _e('Error generating LLMs.txt file.', 'llms-txt-wordpress'); ?></p>');
+                            status.html('<p style="color: red;"><?php echo esc_js(__('Error generating LLMs.txt file.', 'llms-txt-generator')); ?></p>');
                         }
                     },
                     error: function() {
-                        status.html('<p style="color: red;"><?php _e('Error generating LLMs.txt file.', 'llms-txt-wordpress'); ?></p>');
+                        status.html('<p style="color: red;"><?php echo esc_js(__('Error generating LLMs.txt file.', 'llms-txt-generator')); ?></p>');
                     },
                     complete: function() {
-                        button.prop('disabled', false).text('<?php _e('Generate LLMs.txt', 'llms-txt-wordpress'); ?>');
+                        button.prop('disabled', false).text('<?php echo esc_js(__('Generate LLMs.txt', 'llms-txt-generator')); ?>');
                     }
                 });
             });
@@ -311,27 +313,27 @@ class LLMs_TXT_Admin {
                 var button = $(this);
                 var status = $('#llms-txt-status');
                 
-                button.prop('disabled', true).text('<?php _e('Clearing...', 'llms-txt-wordpress'); ?>');
+                button.prop('disabled', true).text('<?php echo esc_js(__('Clearing...', 'llms-txt-generator')); ?>');
                 
                 $.ajax({
                     url: ajaxurl,
                     type: 'POST',
                     data: {
                         action: 'clear_llms_txt_cache',
-                        nonce: '<?php echo wp_create_nonce('llms_txt_clear_cache'); ?>'
+                        nonce: '<?php echo esc_js(wp_create_nonce('llms_txt_clear_cache')); ?>'
                     },
                     success: function(response) {
                         if (response.success) {
-                            status.html('<p style="color: green;"><?php _e('Cache cleared successfully!', 'llms-txt-wordpress'); ?></p>');
+                            status.html('<p style="color: green;"><?php echo esc_js(__('Cache cleared successfully!', 'llms-txt-generator')); ?></p>');
                         } else {
-                            status.html('<p style="color: red;"><?php _e('Error clearing cache.', 'llms-txt-wordpress'); ?></p>');
+                            status.html('<p style="color: red;"><?php echo esc_js(__('Error clearing cache.', 'llms-txt-generator')); ?></p>');
                         }
                     },
                     error: function() {
-                        status.html('<p style="color: red;"><?php _e('Error clearing cache.', 'llms-txt-wordpress'); ?></p>');
+                        status.html('<p style="color: red;"><?php echo esc_js(__('Error clearing cache.', 'llms-txt-generator')); ?></p>');
                     },
                     complete: function() {
-                        button.prop('disabled', false).text('<?php _e('Clear Cache', 'llms-txt-wordpress'); ?>');
+                        button.prop('disabled', false).text('<?php echo esc_js(__('Clear Cache', 'llms-txt-generator')); ?>');
                     }
                 });
             });
