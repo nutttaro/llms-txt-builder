@@ -77,10 +77,9 @@ class LLMs_TXT_Generator {
      * Initialize hooks
      */
     private function init_hooks() {
-        add_action('init', array($this, 'init'));
         add_action('init', array($this, 'handle_llms_txt_request'));
-        register_activation_hook(LLMS_TXT_BUILDER_PLUGIN_FILE, array($this, 'activate'));
-        register_deactivation_hook(LLMS_TXT_BUILDER_PLUGIN_FILE, array($this, 'deactivate'));
+        register_activation_hook(NT_LLMS_TXT_BUILDER_PLUGIN_FILE, array($this, 'activate'));
+        register_deactivation_hook(NT_LLMS_TXT_BUILDER_PLUGIN_FILE, array($this, 'deactivate'));
     }
     
     /**
@@ -88,27 +87,20 @@ class LLMs_TXT_Generator {
      */
     private function load_dependencies() {
         // Load admin functionality
-        require_once LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-admin.php';
+        require_once NT_LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-admin.php';
         $this->admin = new LLMs_TXT_Admin();
         
         // Load generator functionality
-        require_once LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-generator-content.php';
+        require_once NT_LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-generator-content.php';
         $this->generator = new LLMs_TXT_Generator_Content();
         
         // Load cache functionality
-        require_once LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-cache.php';
+        require_once NT_LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-cache.php';
         $this->cache = new LLMs_TXT_Cache();
         
         // Load meta box functionality
-        require_once LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-meta-box.php';
+        require_once NT_LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-meta-box.php';
         $this->meta_box = new LLMs_TXT_Meta_Box();
-    }
-    
-    /**
-     * Initialize plugin
-     */
-    public function init() {
-        load_plugin_textdomain('llms-txt-builder', false, dirname(plugin_basename(LLMS_TXT_BUILDER_PLUGIN_FILE)) . '/languages');
     }
     
     /**
@@ -119,7 +111,7 @@ class LLMs_TXT_Generator {
             $content = $this->generator->get_llms_txt_content();
             
             header('Content-Type: text/plain; charset=utf-8');
-            header('Cache-Control: public, max-age=' . LLMS_TXT_BUILDER_CACHE_DURATION);
+            header('Cache-Control: public, max-age=' . NT_LLMS_TXT_BUILDER_CACHE_DURATION);
             echo wp_kses_post($content);
             exit;
         }
@@ -133,12 +125,11 @@ class LLMs_TXT_Generator {
         $default_options = array(
             'post_types' => array('post'),
             'taxonomies' => array('category', 'post_tag'),
-            'include_pages' => '1',
             'include_archives' => '1',
             'include_author_pages' => '1'
         );
         
-        add_option('llms_txt_builder_options', $default_options);
+        add_option('nt_llms_txt_builder_options', $default_options);
         
         // Generate initial LLMs.txt
         $this->generator->generate_llms_txt();

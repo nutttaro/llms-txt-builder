@@ -1,4 +1,4 @@
-=== LLMs.txt Builder ===
+=== NT LLMs.txt Builder ===
 Contributors: nutttaro
 Donate link: https://buymeacoffee.com/nutttaro
 Tags: llms, ai, seo, sitemap, content-discovery
@@ -13,7 +13,7 @@ Generate an LLMs.txt file that helps AI models and large language models underst
 
 == Description ==
 
-**LLMs.txt Builder** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
+**NT LLMs.txt Builder** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
 
 = Key Features =
 
@@ -91,9 +91,9 @@ The LLMs.txt content is cached for 24 hours by default. This improves performanc
 
 == Installation ==
 
-1. Upload the `llms-txt-builder` folder to your `/wp-content/plugins/` directory
+1. Upload the `nt-llms-txt-builder` folder to your `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to Settings > LLMs.txt to configure the plugin
+3. Go to Settings > NT LLMs.txt to configure the plugin
 
 == Frequently Asked Questions ==
 
@@ -111,7 +111,7 @@ Yes! The plugin automatically detects WooCommerce and includes all products, pro
 
 = Can I customize which content is included? =
 
-Yes! Go to Settings > LLMs.txt to configure which post types, taxonomies, pages, and archives are included in your LLMs.txt file.
+Yes! Go to Settings > NT LLMs.txt to configure which post types, taxonomies, pages, and archives are included in your LLMs.txt file.
 
 = How often is the LLMs.txt file updated? =
 
@@ -146,7 +146,7 @@ Yes! There's a "Clear Cache" button in the plugin settings page, and you can als
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of LLMs.txt Builder plugin.
+Initial release of NT LLMs.txt Builder plugin.
 
 == Requirements ==
 

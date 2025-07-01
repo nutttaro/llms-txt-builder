@@ -1,4 +1,4 @@
-# LLMs.txt Builder
+# NT LLMs.txt Builder
 
 A WordPress plugin that generates an LLMs.txt file containing all links from your website, with support for WooCommerce, custom post types, and custom taxonomies.
 
@@ -19,9 +19,9 @@ This plugin creates an LLMs.txt file (similar to robots.txt) that helps AI model
 
 ## Installation
 
-1. Upload the `llms-txt-builder` folder to your `/wp-content/plugins/` directory
+1. Upload the `nt-llms-txt-builder` folder to your `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to Settings > LLMs.txt to configure the plugin
+3. Go to Settings > NT LLMs.txt to configure the plugin
 
 ## Configuration
 
@@ -31,7 +31,6 @@ The plugin settings page allows you to:
 
 - **Enable/Disable Post Types**: Choose which post types to include in LLMs.txt
 - **Enable/Disable Taxonomies**: Select which taxonomies to include
-- **Include Pages**: Add static pages to the LLMs.txt file
 - **Include Archives**: Include archive pages (blog, shop, etc.)
 - **Include Author Pages**: Add author archive pages
 

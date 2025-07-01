@@ -30,7 +30,7 @@ class LLMs_TXT_Generator_Content {
      */
     public function get_llms_txt_content() {
         // Check cache first
-        $cached_content = get_transient(LLMS_TXT_BUILDER_CACHE_KEY);
+        $cached_content = get_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY);
         if ($cached_content !== false) {
             return $cached_content;
         }
@@ -39,7 +39,7 @@ class LLMs_TXT_Generator_Content {
         $content = $this->generate_llms_txt_content();
         
         // Cache the content
-        set_transient(LLMS_TXT_BUILDER_CACHE_KEY, $content, LLMS_TXT_BUILDER_CACHE_DURATION);
+        set_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY, $content, NT_LLMS_TXT_BUILDER_CACHE_DURATION);
         
         return $content;
     }
@@ -48,7 +48,7 @@ class LLMs_TXT_Generator_Content {
      * Generate LLMs.txt content
      */
     public function generate_llms_txt_content() {
-        $options = get_option('llms_txt_builder_options', array());
+        $options = get_option('nt_llms_txt_builder_options', array());
         $content = '';
 
         // Add header with site name and generation info
@@ -65,29 +65,49 @@ class LLMs_TXT_Generator_Content {
         }
 
         // Pages
-        if (!empty($options['include_pages'])) {
-            $content .= "# Pages\n";
+        if (!empty($options['post_types']) && in_array('page', $options['post_types'])) {
             $pages = get_pages(array('sort_column' => 'menu_order,post_title'));
+            $valid_pages = array();
+            
+            // Filter out ignored pages
             foreach ($pages as $page) {
-                $ignore_page = get_post_meta($page->ID, '_llms_txt_builder_ignore_page', true);
+                $ignore_page = get_post_meta($page->ID, '_nt_llms_txt_builder_ignore_page', true);
                 if (!$ignore_page) {
-                    $content .= get_permalink($page->ID) . "\n";
+                    $valid_pages[] = $page;
                 }
             }
-            $content .= "\n";
+            
+            // Only add section if there are valid pages
+            if (!empty($valid_pages)) {
+                $content .= "# Pages\n";
+                foreach ($valid_pages as $page) {
+                    $content .= get_permalink($page->ID) . "\n";
+                }
+                $content .= "\n";
+            }
         }
 
         // Posts
         if (!empty($options['post_types']) && in_array('post', $options['post_types'])) {
-            $content .= "# Posts\n";
             $posts = get_posts(array('numberposts' => -1, 'post_status' => 'publish'));
+            $valid_posts = array();
+            
+            // Filter out ignored posts
             foreach ($posts as $post) {
-                $ignore_page = get_post_meta($post->ID, '_llms_txt_builder_ignore_page', true);
+                $ignore_page = get_post_meta($post->ID, '_nt_llms_txt_builder_ignore_page', true);
                 if (!$ignore_page) {
-                    $content .= get_permalink($post->ID) . "\n";
+                    $valid_posts[] = $post;
                 }
             }
-            $content .= "\n";
+            
+            // Only add section if there are valid posts
+            if (!empty($valid_posts)) {
+                $content .= "# Posts\n";
+                foreach ($valid_posts as $post) {
+                    $content .= get_permalink($post->ID) . "\n";
+                }
+                $content .= "\n";
+            }
         }
 
         // Blog/Archives
@@ -104,37 +124,43 @@ class LLMs_TXT_Generator_Content {
 
         // Authors
         if (!empty($options['include_author_pages'])) {
-            $content .= "# Authors\n";
             $authors = get_users(array('has_published_posts' => true));
-            foreach ($authors as $author) {
-                $content .= get_author_posts_url($author->ID) . "\n";
+            if (!empty($authors)) {
+                $content .= "# Authors\n";
+                foreach ($authors as $author) {
+                    $content .= get_author_posts_url($author->ID) . "\n";
+                }
+                $content .= "\n";
             }
-            $content .= "\n";
         }
 
         // Categories
         if (!empty($options['taxonomies']) && in_array('category', $options['taxonomies'])) {
-            $content .= "# Categories\n";
-            $categories = get_categories(array('hide_empty' => false));
-            foreach ($categories as $category) {
-                $content .= get_category_link($category->term_id) . "\n";
+            $categories = get_categories(array('hide_empty' => true));
+            if (!empty($categories)) {
+                $content .= "# Categories\n";
+                foreach ($categories as $category) {
+                    $content .= get_category_link($category->term_id) . "\n";
+                }
+                $content .= "\n";
             }
-            $content .= "\n";
         }
 
         // Tags
         if (!empty($options['taxonomies']) && in_array('post_tag', $options['taxonomies'])) {
-            $content .= "# Tags\n";
-            $tags = get_tags(array('hide_empty' => false));
-            foreach ($tags as $tag) {
-                $content .= get_tag_link($tag->term_id) . "\n";
+            $tags = get_tags(array('hide_empty' => true));
+            if (!empty($tags)) {
+                $content .= "# Tags\n";
+                foreach ($tags as $tag) {
+                    $content .= get_tag_link($tag->term_id) . "\n";
+                }
+                $content .= "\n";
             }
-            $content .= "\n";
         }
 
         // Custom post types
         if (!empty($options['post_types'])) {
-            $custom_post_types = array_diff($options['post_types'], array('post'));
+            $custom_post_types = array_diff($options['post_types'], array('post', 'page'));
             if (!empty($custom_post_types)) {
                 foreach ($custom_post_types as $post_type) {
                     // Skip WooCommerce products if WooCommerce is active (handled in WooCommerce section)
@@ -142,17 +168,29 @@ class LLMs_TXT_Generator_Content {
                         continue;
                     }
                     
+
+                    
                     if (post_type_exists($post_type)) {
-                        $post_type_obj = get_post_type_object($post_type);
-                        $content .= "# " . $post_type_obj->labels->name . "\n";
                         $posts = get_posts(array('post_type' => $post_type, 'numberposts' => -1, 'post_status' => 'publish'));
+                        $valid_posts = array();
+                        
+                        // Filter out ignored posts
                         foreach ($posts as $post) {
-                            $ignore_page = get_post_meta($post->ID, '_llms_txt_builder_ignore_page', true);
+                            $ignore_page = get_post_meta($post->ID, '_nt_llms_txt_builder_ignore_page', true);
                             if (!$ignore_page) {
-                                $content .= get_permalink($post->ID) . "\n";
+                                $valid_posts[] = $post;
                             }
                         }
-                        $content .= "\n";
+                        
+                        // Only add section if there are valid posts
+                        if (!empty($valid_posts)) {
+                            $post_type_obj = get_post_type_object($post_type);
+                            $content .= "# " . $post_type_obj->labels->name . "\n";
+                            foreach ($valid_posts as $post) {
+                                $content .= get_permalink($post->ID) . "\n";
+                            }
+                            $content .= "\n";
+                        }
                     }
                 }
             }
@@ -169,13 +207,15 @@ class LLMs_TXT_Generator_Content {
                     }
                     
                     if (taxonomy_exists($taxonomy)) {
-                        $taxonomy_obj = get_taxonomy($taxonomy);
-                        $content .= "# " . $taxonomy_obj->labels->name . "\n";
-                        $terms = get_terms(array('taxonomy' => $taxonomy, 'hide_empty' => false));
-                        foreach ($terms as $term) {
-                            $content .= get_term_link($term) . "\n";
+                        $terms = get_terms(array('taxonomy' => $taxonomy, 'hide_empty' => true));
+                        if (!empty($terms)) {
+                            $taxonomy_obj = get_taxonomy($taxonomy);
+                            $content .= "# " . $taxonomy_obj->labels->name . "\n";
+                            foreach ($terms as $term) {
+                                $content .= get_term_link($term) . "\n";
+                            }
+                            $content .= "\n";
                         }
-                        $content .= "\n";
                     }
                 }
             }
@@ -185,24 +225,36 @@ class LLMs_TXT_Generator_Content {
         if (class_exists('WooCommerce')) {
             // Product categories
             if (taxonomy_exists('product_cat')) {
-                $content .= "# Product Categories\n";
-                $product_categories = get_terms(array('taxonomy' => 'product_cat', 'hide_empty' => false));
-                foreach ($product_categories as $category) {
-                    $content .= get_term_link($category) . "\n";
+                $product_categories = get_terms(array('taxonomy' => 'product_cat', 'hide_empty' => true));
+                if (!empty($product_categories)) {
+                    $content .= "# Product Categories\n";
+                    foreach ($product_categories as $category) {
+                        $content .= get_term_link($category) . "\n";
+                    }
+                    $content .= "\n";
                 }
-                $content .= "\n";
             }
             // Products
             if (post_type_exists('product')) {
-                $content .= "# Products\n";
                 $products = get_posts(array('post_type' => 'product', 'numberposts' => -1, 'post_status' => 'publish'));
+                $valid_products = array();
+                
+                // Filter out ignored products
                 foreach ($products as $product) {
-                    $ignore_page = get_post_meta($product->ID, '_llms_txt_builder_ignore_page', true);
+                    $ignore_page = get_post_meta($product->ID, '_nt_llms_txt_builder_ignore_page', true);
                     if (!$ignore_page) {
-                        $content .= get_permalink($product->ID) . "\n";
+                        $valid_products[] = $product;
                     }
                 }
-                $content .= "\n";
+                
+                // Only add section if there are valid products
+                if (!empty($valid_products)) {
+                    $content .= "# Products\n";
+                    foreach ($valid_products as $product) {
+                        $content .= get_permalink($product->ID) . "\n";
+                    }
+                    $content .= "\n";
+                }
             }
         }
 
@@ -221,7 +273,7 @@ class LLMs_TXT_Generator_Content {
         // Clear cache and set new content
         $llms_txt = LLMs_TXT_Generator::get_instance();
         $llms_txt->cache->clear_cache();
-        set_transient(LLMS_TXT_BUILDER_CACHE_KEY, $content, LLMS_TXT_BUILDER_CACHE_DURATION);
+        set_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY, $content, NT_LLMS_TXT_BUILDER_CACHE_DURATION);
         
         return $content;
     }

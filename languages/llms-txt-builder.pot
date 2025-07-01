@@ -28,13 +28,7 @@ msgstr ""
 msgid "Include %s"
 msgstr ""
 
-#: includes/class-llms-txt-admin.php:91
-msgid "Include Pages"
-msgstr ""
 
-#: includes/class-llms-txt-admin.php:98
-msgid "Include static pages"
-msgstr ""
 
 #: includes/class-llms-txt-admin.php:104
 msgid "Include Archives"
@@ -162,10 +156,6 @@ msgstr ""
 
 #: includes/class-llms-txt-admin.php:45
 msgid "Settings"
-msgstr ""
-
-#: includes/class-llms-txt-admin.php:49
-msgid "Donate"
 msgstr ""
 
 #: includes/class-llms-txt-admin.php:71

@@ -31,9 +31,9 @@ class LLMs_TXT_Admin {
     private function init_hooks() {
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_init', array($this, 'init_settings'));
-        add_action('wp_ajax_generate_llms_txt', array($this, 'ajax_generate_llms_txt'));
-        add_action('wp_ajax_clear_llms_txt_builder_cache', array($this, 'ajax_clear_cache'));
-        add_filter('plugin_action_links_' . plugin_basename(LLMS_TXT_BUILDER_PLUGIN_FILE), array($this, 'add_plugin_action_links'));
+        add_action('wp_ajax_generate_nt_llms_txt', array($this, 'ajax_generate_llms_txt'));
+        add_action('wp_ajax_clear_nt_llms_txt_builder_cache', array($this, 'ajax_clear_cache'));
+        add_filter('plugin_action_links_' . plugin_basename(NT_LLMS_TXT_BUILDER_PLUGIN_FILE), array($this, 'add_plugin_action_links'));
         add_filter('plugin_row_meta', array($this, 'add_plugin_row_meta'), 10, 2);
     }
     
@@ -45,12 +45,8 @@ class LLMs_TXT_Admin {
      */
     public function add_plugin_action_links($links) {
         // Add Settings link
-        $settings_link = '<a href="' . admin_url('options-general.php?page=llms_txt_builder_settings') . '">' . esc_html__('Settings', 'llms-txt-builder') . '</a>';
+        $settings_link = '<a href="' . admin_url('options-general.php?page=nt_llms_txt_builder_settings') . '">' . esc_html__('Settings', 'llms-txt-builder') . '</a>';
         array_unshift($links, $settings_link);
-        
-        // Add Donate link
-        $donate_link = '<a href="https://nutttaro.com/donate" target="_blank">' . esc_html__('Donate', 'llms-txt-builder') . '</a>';
-        $links[] = $donate_link;
         
         return $links;
     }
@@ -63,10 +59,10 @@ class LLMs_TXT_Admin {
      * @return array Modified plugin row meta links
      */
     public function add_plugin_row_meta($links, $file) {
-        if (plugin_basename(LLMS_TXT_BUILDER_PLUGIN_FILE) === $file) {
-            $links[] = '<a href="https://wordpress.org/plugins/llms-txt-builder/" target="_blank">' . esc_html__('Documentation', 'llms-txt-builder') . '</a>';
-            $links[] = '<a href="https://wordpress.org/support/plugin/llms-txt-builder/" target="_blank">' . esc_html__('Support', 'llms-txt-builder') . '</a>';
-            $links[] = '<a href="https://wordpress.org/support/plugin/llms-txt-builder/reviews/" target="_blank">' . esc_html__('Reviews', 'llms-txt-builder') . '</a>';
+        if (plugin_basename(NT_LLMS_TXT_BUILDER_PLUGIN_FILE) === $file) {
+            $links[] = '<a href="https://wordpress.org/plugins/nt-llms-txt-builder/" target="_blank">' . esc_html__('Documentation', 'llms-txt-builder') . '</a>';
+            $links[] = '<a href="https://wordpress.org/support/plugin/nt-llms-txt-builder/" target="_blank">' . esc_html__('Support', 'llms-txt-builder') . '</a>';
+            $links[] = '<a href="https://wordpress.org/support/plugin/nt-llms-txt-builder/reviews/" target="_blank">' . esc_html__('Reviews', 'llms-txt-builder') . '</a>';
         }
         return $links;
     }
@@ -76,10 +72,10 @@ class LLMs_TXT_Admin {
      */
     public function add_admin_menu() {
         add_options_page(
-            esc_html__('LLMs.txt Builder Settings', 'llms-txt-builder'),
-            esc_html__('LLMs.txt Builder', 'llms-txt-builder'),
+            esc_html__('NT LLMs.txt Builder Settings', 'llms-txt-builder'),
+            esc_html__('NT LLMs.txt Builder', 'llms-txt-builder'),
             'manage_options',
-            'llms_txt_builder_settings',
+            'nt_llms_txt_builder_settings',
             array($this, 'settings_page')
         );
     }
@@ -88,61 +84,55 @@ class LLMs_TXT_Admin {
      * Initialize settings
      */
     public function init_settings() {
-        register_setting('llms_txt_builder_settings', 'llms_txt_builder_options', array($this, 'sanitize_options'));
+        register_setting('nt_llms_txt_builder_settings', 'nt_llms_txt_builder_options', array($this, 'sanitize_options'));
         
         add_settings_section(
-            'llms_txt_builder_general',
+            'nt_llms_txt_builder_general',
             esc_html__('General Settings', 'llms-txt-builder'),
             array($this, 'general_section_callback'),
-            'llms_txt_builder_settings'
+            'nt_llms_txt_builder_settings'
         );
         
         add_settings_field(
             'post_types',
             esc_html__('Post Types', 'llms-txt-builder'),
             array($this, 'post_types_callback'),
-            'llms_txt_builder_settings',
-            'llms_txt_builder_general'
+            'nt_llms_txt_builder_settings',
+            'nt_llms_txt_builder_general'
         );
         
         add_settings_field(
             'taxonomies',
             esc_html__('Taxonomies', 'llms-txt-builder'),
             array($this, 'taxonomies_callback'),
-            'llms_txt_builder_settings',
-            'llms_txt_builder_general'
+            'nt_llms_txt_builder_settings',
+            'nt_llms_txt_builder_general'
         );
         
-        add_settings_field(
-            'include_pages',
-            esc_html__('Include Pages', 'llms-txt-builder'),
-            array($this, 'include_pages_callback'),
-            'llms_txt_builder_settings',
-            'llms_txt_builder_general'
-        );
+
         
         add_settings_field(
             'include_archives',
             esc_html__('Include Archives', 'llms-txt-builder'),
             array($this, 'include_archives_callback'),
-            'llms_txt_builder_settings',
-            'llms_txt_builder_general'
+            'nt_llms_txt_builder_settings',
+            'nt_llms_txt_builder_general'
         );
         
         add_settings_field(
             'include_author_pages',
             esc_html__('Include Author Pages', 'llms-txt-builder'),
             array($this, 'include_author_pages_callback'),
-            'llms_txt_builder_settings',
-            'llms_txt_builder_general'
+            'nt_llms_txt_builder_settings',
+            'nt_llms_txt_builder_general'
         );
         
         add_settings_field(
             'overview_text',
             esc_html__('Overview Text', 'llms-txt-builder'),
             array($this, 'overview_text_callback'),
-            'llms_txt_builder_settings',
-            'llms_txt_builder_general'
+            'nt_llms_txt_builder_settings',
+            'nt_llms_txt_builder_general'
         );
     }
     
@@ -157,7 +147,7 @@ class LLMs_TXT_Admin {
      * Post types callback
      */
     public function post_types_callback() {
-        $options = get_option('llms_txt_builder_options', array());
+        $options = get_option('nt_llms_txt_builder_options', array());
         $post_types = get_post_types(array('public' => true), 'objects');
         
         foreach ($post_types as $post_type) {
@@ -166,7 +156,7 @@ class LLMs_TXT_Admin {
             $label = $post_type->labels->name;
             $checked = isset($options[$field]) && in_array($value, $options[$field]);
             
-            echo '<label><input type="checkbox" name="llms_txt_builder_options[' . esc_attr($field) . '][]" value="' . esc_attr($value) . '" ' . checked($checked, true, false) . ' /> ' . esc_html($label) . '</label><br>';
+            echo '<label><input type="checkbox" name="nt_llms_txt_builder_options[' . esc_attr($field) . '][]" value="' . esc_attr($value) . '" ' . checked($checked, true, false) . ' /> ' . esc_html($label) . '</label><br>';
         }
     }
     
@@ -174,7 +164,7 @@ class LLMs_TXT_Admin {
      * Taxonomies callback
      */
     public function taxonomies_callback() {
-        $options = get_option('llms_txt_builder_options', array());
+        $options = get_option('nt_llms_txt_builder_options', array());
         $taxonomies = get_taxonomies(array('public' => true), 'objects');
         
         foreach ($taxonomies as $taxonomy) {
@@ -183,31 +173,21 @@ class LLMs_TXT_Admin {
             $label = $taxonomy->labels->name;
             $checked = isset($options[$field]) && in_array($value, $options[$field]);
             
-            echo '<label><input type="checkbox" name="llms_txt_builder_options[' . esc_attr($field) . '][]" value="' . esc_attr($value) . '" ' . checked($checked, true, false) . ' /> ' . esc_html($label) . '</label><br>';
+            echo '<label><input type="checkbox" name="nt_llms_txt_builder_options[' . esc_attr($field) . '][]" value="' . esc_attr($value) . '" ' . checked($checked, true, false) . ' /> ' . esc_html($label) . '</label><br>';
         }
     }
     
-    /**
-     * Include pages callback
-     */
-    public function include_pages_callback() {
-        $options = get_option('llms_txt_builder_options', array());
-        $field = 'include_pages';
-        $checked = isset($options[$field]) ? $options[$field] : '1';
-        
-        echo '<input type="checkbox" name="llms_txt_builder_options[' . esc_attr($field) . ']" value="1" ' . checked($checked, '1', false) . ' />';
-        echo '<p class="description">' . esc_html__('Check to include pages in the LLMs.txt file.', 'llms-txt-builder') . '</p>';
-    }
+
     
     /**
      * Include archives callback
      */
     public function include_archives_callback() {
-        $options = get_option('llms_txt_builder_options', array());
+        $options = get_option('nt_llms_txt_builder_options', array());
         $field = 'include_archives';
         $checked = isset($options[$field]) ? $options[$field] : '1';
         
-        echo '<input type="checkbox" name="llms_txt_builder_options[' . esc_attr($field) . ']" value="1" ' . checked($checked, '1', false) . ' />';
+        echo '<input type="checkbox" name="nt_llms_txt_builder_options[' . esc_attr($field) . ']" value="1" ' . checked($checked, '1', false) . ' />';
         echo '<p class="description">' . esc_html__('Check to include archives in the LLMs.txt file.', 'llms-txt-builder') . '</p>';
     }
     
@@ -215,11 +195,11 @@ class LLMs_TXT_Admin {
      * Include author pages callback
      */
     public function include_author_pages_callback() {
-        $options = get_option('llms_txt_builder_options', array());
+        $options = get_option('nt_llms_txt_builder_options', array());
         $field = 'include_author_pages';
         $checked = isset($options[$field]) ? $options[$field] : '';
         
-        echo '<input type="checkbox" name="llms_txt_builder_options[' . esc_attr($field) . ']" value="1" ' . checked($checked, '1', false) . ' />';
+        echo '<input type="checkbox" name="nt_llms_txt_builder_options[' . esc_attr($field) . ']" value="1" ' . checked($checked, '1', false) . ' />';
         echo '<p class="description">' . esc_html__('Check to include author pages in the LLMs.txt file.', 'llms-txt-builder') . '</p>';
     }
     
@@ -227,11 +207,11 @@ class LLMs_TXT_Admin {
      * Overview text callback
      */
     public function overview_text_callback() {
-        $options = get_option('llms_txt_builder_options', array());
+        $options = get_option('nt_llms_txt_builder_options', array());
         $field = 'overview_text';
         $value = isset($options[$field]) ? $options[$field] : '';
         
-        echo '<textarea name="llms_txt_builder_options[' . esc_attr($field) . ']" rows="4" cols="50">' . esc_textarea($value) . '</textarea>';
+        echo '<textarea name="nt_llms_txt_builder_options[' . esc_attr($field) . ']" rows="4" cols="50">' . esc_textarea($value) . '</textarea>';
         echo '<p class="description">' . esc_html__('Custom text to display at the top of the LLMs.txt file.', 'llms-txt-builder') . '</p>';
     }
     
@@ -249,7 +229,7 @@ class LLMs_TXT_Admin {
             $sanitized['taxonomies'] = array_map('sanitize_text_field', $input['taxonomies']);
         }
         
-        $sanitized['include_pages'] = isset($input['include_pages']) ? '1' : '0';
+
         $sanitized['include_archives'] = isset($input['include_archives']) ? '1' : '0';
         $sanitized['include_author_pages'] = isset($input['include_author_pages']) ? '1' : '0';
         
@@ -266,12 +246,12 @@ class LLMs_TXT_Admin {
     public function settings_page() {
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e('LLMs.txt Builder Settings', 'llms-txt-builder'); ?></h1>
+            <h1><?php esc_html_e('NT LLMs.txt Builder Settings', 'llms-txt-builder'); ?></h1>
             
             <form method="post" action="options.php">
                 <?php
-                settings_fields('llms_txt_builder_settings');
-                do_settings_sections('llms_txt_builder_settings');
+                settings_fields('nt_llms_txt_builder_settings');
+                do_settings_sections('nt_llms_txt_builder_settings');
                 submit_button();
                 ?>
             </form>
@@ -307,8 +287,8 @@ class LLMs_TXT_Admin {
                         url: ajaxurl,
                         type: 'POST',
                         data: {
-                            action: 'generate_llms_txt',
-                            nonce: '<?php echo esc_js(wp_create_nonce('llms_txt_builder_generate')); ?>'
+                            action: 'generate_nt_llms_txt',
+                            nonce: '<?php echo esc_js(wp_create_nonce('nt_llms_txt_builder_generate')); ?>'
                         },
                         success: function(response) {
                             if (response.success) {
@@ -318,7 +298,7 @@ class LLMs_TXT_Admin {
                             }
                         },
                         error: function() {
-                            $('#llms-txt-result').html('<div class="notice notice-error"><p><?php echo esc_js(__('An error occurred.', 'llms-txt-builder')); ?></p></div>');
+                            $('#llms-txt-result').html('<div class="notice notice-error"><p><?php echo esc_js(__('An error occurred.', 'nt-llms-txt-builder')); ?></p></div>');
                         },
                         complete: function() {
                             button.prop('disabled', false).text('<?php echo esc_js(__('Generate LLMs.txt', 'llms-txt-builder')); ?>');
@@ -334,8 +314,8 @@ class LLMs_TXT_Admin {
                         url: ajaxurl,
                         type: 'POST',
                         data: {
-                            action: 'clear_llms_txt_builder_cache',
-                            nonce: '<?php echo esc_js(wp_create_nonce('llms_txt_builder_clear_cache')); ?>'
+                            action: 'clear_nt_llms_txt_builder_cache',
+                            nonce: '<?php echo esc_js(wp_create_nonce('nt_llms_txt_builder_clear_cache')); ?>'
                         },
                         success: function(response) {
                             if (response.success) {
@@ -345,7 +325,7 @@ class LLMs_TXT_Admin {
                             }
                         },
                         error: function() {
-                            $('#llms-txt-result').html('<div class="notice notice-error"><p><?php echo esc_js(__('An error occurred.', 'llms-txt-builder')); ?></p></div>');
+                            $('#llms-txt-result').html('<div class="notice notice-error"><p><?php echo esc_js(__('An error occurred.', 'nt-llms-txt-builder')); ?></p></div>');
                         },
                         complete: function() {
                             button.prop('disabled', false).text('<?php echo esc_js(__('Clear Cache', 'llms-txt-builder')); ?>');
@@ -362,7 +342,7 @@ class LLMs_TXT_Admin {
      * AJAX generate LLMs.txt
      */
     public function ajax_generate_llms_txt() {
-        check_ajax_referer('llms_txt_builder_generate', 'nonce');
+        check_ajax_referer('nt_llms_txt_builder_generate', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_die(esc_html__('You do not have permission to perform this action.', 'llms-txt-builder'));
@@ -382,7 +362,7 @@ class LLMs_TXT_Admin {
      * AJAX clear cache
      */
     public function ajax_clear_cache() {
-        check_ajax_referer('llms_txt_builder_clear_cache', 'nonce');
+        check_ajax_referer('nt_llms_txt_builder_clear_cache', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_die(esc_html__('You do not have permission to perform this action.', 'llms-txt-builder'));

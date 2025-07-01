@@ -11,10 +11,10 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // Delete plugin options
-delete_option('llms_txt_builder_options');
+delete_option('nt_llms_txt_builder_options');
 
 // Clear any cached data
-delete_transient('llms_txt_builder_cache');
+delete_transient('nt_llms_txt_builder_cache');
 
 // Flush rewrite rules
 flush_rewrite_rules(); 

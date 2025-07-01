@@ -31,34 +31,34 @@ class LLMs_TXT_Cache {
      * Clear cache
      */
     public function clear_cache() {
-        return delete_transient(LLMS_TXT_BUILDER_CACHE_KEY);
+        return delete_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY);
     }
     
     /**
      * Get cached content
      */
     public function get_cached_content() {
-        return get_transient(LLMS_TXT_BUILDER_CACHE_KEY);
+        return get_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY);
     }
     
     /**
      * Set cached content
      */
     public function set_cached_content($content) {
-        return set_transient(LLMS_TXT_BUILDER_CACHE_KEY, $content, LLMS_TXT_BUILDER_CACHE_DURATION);
+        return set_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY, $content, NT_LLMS_TXT_BUILDER_CACHE_DURATION);
     }
     
     /**
      * Check if cache exists
      */
     public function has_cache() {
-        return get_transient(LLMS_TXT_BUILDER_CACHE_KEY) !== false;
+        return get_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY) !== false;
     }
     
     /**
      * Get cache duration
      */
     public function get_cache_duration() {
-        return LLMS_TXT_BUILDER_CACHE_DURATION;
+        return NT_LLMS_TXT_BUILDER_CACHE_DURATION;
     }
 } 
