@@ -224,7 +224,7 @@ class LLMs_TXT_Generator_Content {
         // WooCommerce
         if (class_exists('WooCommerce')) {
             // Product categories
-            if (taxonomy_exists('product_cat')) {
+            if (!empty($options['taxonomies']) && in_array('product_cat', $options['taxonomies']) && taxonomy_exists('product_cat')) {
                 $product_categories = get_terms(array('taxonomy' => 'product_cat', 'hide_empty' => true));
                 if (!empty($product_categories)) {
                     $content .= "# Product Categories\n";
@@ -235,7 +235,7 @@ class LLMs_TXT_Generator_Content {
                 }
             }
             // Products
-            if (post_type_exists('product')) {
+            if (!empty($options['post_types']) && in_array('product', $options['post_types']) && post_type_exists('product')) {
                 $products = get_posts(array('post_type' => 'product', 'numberposts' => -1, 'post_status' => 'publish'));
                 $valid_products = array();
                 
