@@ -48,7 +48,7 @@ class LLMs_TXT_Generator_Content {
      * Generate LLMs.txt content
      */
     public function generate_llms_txt_content() {
-        $options = get_option('nt_llms_txt_builder_options', array());
+        $options = get_option('ntllms_txt_builder_options', array());
         $content = '';
 
         // Add header with site name and generation info
@@ -71,7 +71,7 @@ class LLMs_TXT_Generator_Content {
             
             // Filter out ignored pages
             foreach ($pages as $page) {
-                $ignore_page = get_post_meta($page->ID, '_nt_llms_txt_builder_ignore_page', true);
+                $ignore_page = get_post_meta($page->ID, '_ntllms_txt_builder_ignore_page', true);
                 if (!$ignore_page) {
                     $valid_pages[] = $page;
                 }
@@ -94,7 +94,7 @@ class LLMs_TXT_Generator_Content {
             
             // Filter out ignored posts
             foreach ($posts as $post) {
-                $ignore_page = get_post_meta($post->ID, '_nt_llms_txt_builder_ignore_page', true);
+                $ignore_page = get_post_meta($post->ID, '_ntllms_txt_builder_ignore_page', true);
                 if (!$ignore_page) {
                     $valid_posts[] = $post;
                 }
@@ -176,7 +176,7 @@ class LLMs_TXT_Generator_Content {
                         
                         // Filter out ignored posts
                         foreach ($posts as $post) {
-                            $ignore_page = get_post_meta($post->ID, '_nt_llms_txt_builder_ignore_page', true);
+                            $ignore_page = get_post_meta($post->ID, '_ntllms_txt_builder_ignore_page', true);
                             if (!$ignore_page) {
                                 $valid_posts[] = $post;
                             }
@@ -241,7 +241,7 @@ class LLMs_TXT_Generator_Content {
                 
                 // Filter out ignored products
                 foreach ($products as $product) {
-                    $ignore_page = get_post_meta($product->ID, '_nt_llms_txt_builder_ignore_page', true);
+                    $ignore_page = get_post_meta($product->ID, '_ntllms_txt_builder_ignore_page', true);
                     if (!$ignore_page) {
                         $valid_products[] = $product;
                     }

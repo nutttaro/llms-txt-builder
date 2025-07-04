@@ -40,14 +40,14 @@ class LLMs_TXT_Meta_Box {
         $post_types = get_post_types(array('public' => true));
         
         foreach ($post_types as $post_type) {
-            add_meta_box(
-                'nt_llms_txt_builder_cache_clear',
-                esc_html__('NT LLMs.txt Builder', 'llms-txt-builder'),
-                array($this, 'meta_box_callback'),
-                $post_type,
-                'side',
-                'default'
-            );
+                    add_meta_box(
+            'ntllms_txt_builder_cache_clear',
+            esc_html__('LLMs.txt Builder', 'nt-llms-txt-builder'),
+            array($this, 'meta_box_callback'),
+            $post_type,
+            'side',
+            'default'
+        );
         }
     }
     
@@ -55,22 +55,22 @@ class LLMs_TXT_Meta_Box {
      * Meta box callback
      */
     public function meta_box_callback($post) {
-        wp_nonce_field('nt_llms_txt_builder_meta_box', 'nt_llms_txt_builder_meta_box_nonce');
+        wp_nonce_field('ntllms_txt_builder_meta_box_nonce', 'ntllms_txt_builder_meta_box_nonce');
         
-        $clear_cache = get_post_meta($post->ID, '_nt_llms_txt_builder_clear_cache', true);
-        $ignore_page = get_post_meta($post->ID, '_nt_llms_txt_builder_ignore_page', true);
+        $clear_cache = get_post_meta($post->ID, '_ntllms_txt_builder_clear_cache', true);
+        $ignore_page = get_post_meta($post->ID, '_ntllms_txt_builder_ignore_page', true);
         
         ?>
         <p>
             <label>
-                <input type="checkbox" name="nt_llms_txt_builder_clear_cache" value="1" <?php checked($clear_cache, '1'); ?> />
-                <?php esc_html_e('Clear LLMs.txt cache on update', 'llms-txt-builder'); ?>
+                <input type="checkbox" name="ntllms_txt_builder_clear_cache" value="1" <?php checked($clear_cache, '1'); ?> />
+                <?php esc_html_e('Clear LLMs.txt cache on update', 'nt-llms-txt-builder'); ?>
             </label>
         </p>
         <p>
             <label>
-                <input type="checkbox" name="nt_llms_txt_builder_ignore_page" value="1" <?php checked($ignore_page, '1'); ?> />
-                <?php esc_html_e('Ignore this page/post in LLMs.txt', 'llms-txt-builder'); ?>
+                <input type="checkbox" name="ntllms_txt_builder_ignore_page" value="1" <?php checked($ignore_page, '1'); ?> />
+                <?php esc_html_e('Ignore this page/post in LLMs.txt', 'nt-llms-txt-builder'); ?>
             </label>
         </p>
         <?php
@@ -81,7 +81,7 @@ class LLMs_TXT_Meta_Box {
      */
     public function save_meta_box_data($post_id) {
         // Check if nonce is valid
-        if (!isset($_POST['nt_llms_txt_builder_meta_box_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nt_llms_txt_builder_meta_box_nonce'])), 'nt_llms_txt_builder_meta_box')) {
+        if (!isset($_POST['ntllms_txt_builder_meta_box_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['ntllms_txt_builder_meta_box_nonce'])), 'ntllms_txt_builder_meta_box_nonce')) {
             return;
         }
         
@@ -95,12 +95,12 @@ class LLMs_TXT_Meta_Box {
             return;
         }
         
-        // Save meta box data
-        $clear_cache = isset($_POST['nt_llms_txt_builder_clear_cache']) ? '1' : '0';
-        $ignore_page = isset($_POST['nt_llms_txt_builder_ignore_page']) ? '1' : '0';
+        // Save the data
+        $clear_cache = isset($_POST['ntllms_txt_builder_clear_cache']) ? '1' : '0';
+        $ignore_page = isset($_POST['ntllms_txt_builder_ignore_page']) ? '1' : '0';
         
-        update_post_meta($post_id, '_nt_llms_txt_builder_clear_cache', $clear_cache);
-        update_post_meta($post_id, '_nt_llms_txt_builder_ignore_page', $ignore_page);
+        update_post_meta($post_id, '_ntllms_txt_builder_clear_cache', $clear_cache);
+        update_post_meta($post_id, '_ntllms_txt_builder_ignore_page', $ignore_page);
         
         // Clear cache if requested
         if ($clear_cache === '1') {

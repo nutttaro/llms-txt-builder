@@ -2,7 +2,7 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: LLMs.txt Builder 1.0.0\n"
+"Project-Id-Version: llms-txt-builder 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/llms-txt-builder\n"
 "POT-Creation-Date: 2024-01-15 10:00+0000\n"
 "MIME-Version: 1.0\n"

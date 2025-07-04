@@ -25,13 +25,13 @@ define('NT_LLMS_TXT_BUILDER_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('NT_LLMS_TXT_BUILDER_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('NT_LLMS_TXT_BUILDER_PLUGIN_FILE', __FILE__);
 define('NT_LLMS_TXT_BUILDER_PLUGIN_VERSION', '1.0.0');
-define('NT_LLMS_TXT_BUILDER_CACHE_KEY', 'nt_llms_txt_builder_cache');
+define('NT_LLMS_TXT_BUILDER_CACHE_KEY', 'ntllms_txt_builder_cache_data');
 define('NT_LLMS_TXT_BUILDER_CACHE_DURATION', 86400); // 24 hours
 
 /**
  * Main plugin initialization
  */
-function llms_txt_builder_init() {
+function ntllms_txt_builder_plugin_init() {
     // Load the main plugin class
     require_once NT_LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-generator.php';
     
@@ -40,4 +40,4 @@ function llms_txt_builder_init() {
 }
 
 // Initialize the plugin
-add_action('plugins_loaded', 'llms_txt_builder_init'); 
+add_action('plugins_loaded', 'ntllms_txt_builder_plugin_init'); 

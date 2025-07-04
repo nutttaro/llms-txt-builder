@@ -129,7 +129,7 @@ class LLMs_TXT_Generator {
             'include_author_pages' => '1'
         );
         
-        add_option('nt_llms_txt_builder_options', $default_options);
+        add_option('ntllms_txt_builder_options', $default_options);
         
         // Generate initial LLMs.txt
         $this->generator->generate_llms_txt();
