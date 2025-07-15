@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: NT LLMs.txt Builder
+ * Plugin Name: LLMs.txt Builder
  * Plugin URI: https://wordpress.org/plugins/nt-llms-txt-builder
  * Description: This plugin generates an LLMs.txt file that includes all links from the website, with support for WooCommerce, custom post types, and custom taxonomies.
  * Version: 1.0.0
@@ -34,10 +34,10 @@ define('NT_LLMS_TXT_BUILDER_CACHE_DURATION', 86400); // 24 hours
 function ntllms_txt_builder_plugin_init() {
     // Load the main plugin class
     require_once NT_LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-generator.php';
-    
+
     // Initialize the plugin
     return \NT\LLMSTXT\LLMs_TXT_Generator::get_instance();
 }
 
 // Initialize the plugin
-add_action('plugins_loaded', 'ntllms_txt_builder_plugin_init'); 
+add_action('plugins_loaded', 'ntllms_txt_builder_plugin_init');
