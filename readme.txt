@@ -1,4 +1,4 @@
-=== NT LLMs.txt Builder ===
+=== LLMs.txt Builder ===
 Contributors: nutttaro
 Donate link: https://buymeacoffee.com/nutttaro
 Tags: llms, ai, seo, sitemap, content-discovery
@@ -13,7 +13,7 @@ Generate an LLMs.txt file that helps AI models and large language models underst
 
 == Description ==
 
-**NT LLMs.txt Builder** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
+**LLMs.txt Builder** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
 
 = Key Features =
 
@@ -36,36 +36,6 @@ The file provides context and instructions to AI models about your project, help
 * Follow your coding standards and patterns
 * Understand the purpose and architecture of your codebase
 * Provide more relevant and contextual assistance
-
-= Example LLMs.txt Output =
-
-```
-# My WordPress Site
-# Generated on: 2024-01-15 10:30:00
-# URL: https://example.com
-
-This is a WordPress website with the following content structure:
-
-# Pages
-https://example.com
-https://example.com/about/
-https://example.com/contact/
-https://example.com/privacy-policy/
-
-# Posts
-https://example.com/2024/01/15/my-first-post/
-https://example.com/2024/01/14/another-post/
-
-# Categories
-https://example.com/category/technology/
-https://example.com/category/business/
-
-# Tags
-https://example.com/tag/wordpress/
-https://example.com/tag/development/
-
-# End of LLMs.txt
-```
 
 = WooCommerce Integration =
 
@@ -93,7 +63,7 @@ The LLMs.txt content is cached for 24 hours by default. This improves performanc
 
 1. Upload the `nt-llms-txt-builder` folder to your `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to Settings > NT LLMs.txt to configure the plugin
+3. Go to Settings > LLMs.txt Builder to configure the plugin
 
 == Frequently Asked Questions ==
 
@@ -111,7 +81,7 @@ Yes! The plugin automatically detects WooCommerce and includes all products, pro
 
 = Can I customize which content is included? =
 
-Yes! Go to Settings > NT LLMs.txt to configure which post types, taxonomies, pages, and archives are included in your LLMs.txt file.
+Yes! Go to Settings > LLMs.txt Builder to configure which post types, taxonomies, pages, and archives are included in your LLMs.txt file.
 
 = How often is the LLMs.txt file updated? =
 
@@ -128,8 +98,8 @@ Yes! There's a "Clear Cache" button in the plugin settings page, and you can als
 == Screenshots ==
 
 1. Plugin settings page showing configuration options
-2. Meta box on post edit screen for cache management
-3. Example LLMs.txt output in browser
+2. Example LLMs.txt output in browser
+3. Meta box on post edit screen for cache management
 
 == Changelog ==
 
@@ -164,4 +134,4 @@ Developed for the WordPress community to help AI models better understand websit
 
 == License ==
 
-This plugin is licensed under the GPL v2 or later. 
+This plugin is licensed under the GPL v2 or later.
