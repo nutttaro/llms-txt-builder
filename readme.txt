@@ -31,6 +31,7 @@ Generate an LLMs.txt file that helps AI models and large language models underst
 LLMs.txt is a file format designed to help AI models and large language models understand how to interact with your codebase more effectively. It's similar in concept to `robots.txt` for web crawlers, but specifically for AI assistants.
 
 The file provides context and instructions to AI models about your project, helping them:
+
 * Understand your project structure and conventions
 * Know which files are important vs. generated/ignored
 * Follow your coding standards and patterns
@@ -40,6 +41,7 @@ The file provides context and instructions to AI models about your project, help
 = WooCommerce Integration =
 
 When WooCommerce is active, the plugin automatically includes:
+
 * **Product Pages**: All published products
 * **Product Categories**: All product category pages
 * **Product Tags**: All product tag pages
@@ -48,6 +50,7 @@ When WooCommerce is active, the plugin automatically includes:
 = Custom Post Types and Taxonomies =
 
 The plugin automatically detects and allows configuration for:
+
 * All public post types (excluding attachments)
 * All public taxonomies
 * Custom post types and taxonomies from other plugins
@@ -55,6 +58,7 @@ The plugin automatically detects and allows configuration for:
 = Caching =
 
 The LLMs.txt content is cached for 24 hours by default. This improves performance and reduces server load. The cache is automatically cleared when:
+
 * Plugin settings are updated
 * A post with cache clearing enabled is updated
 * Manual cache clearing is triggered
