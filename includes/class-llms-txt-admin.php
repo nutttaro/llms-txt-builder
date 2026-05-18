@@ -56,6 +56,7 @@ class LLMs_TXT_Admin {
             $links[] = '<a href="https://wordpress.org/plugins/nt-llms-txt-builder/" target="_blank">' . esc_html__('Documentation', 'nt-llms-txt-builder') . '</a>';
             $links[] = '<a href="https://wordpress.org/support/plugin/nt-llms-txt-builder/" target="_blank">' . esc_html__('Support', 'nt-llms-txt-builder') . '</a>';
             $links[] = '<a href="https://wordpress.org/support/plugin/nt-llms-txt-builder/reviews/" target="_blank">' . esc_html__('Reviews', 'nt-llms-txt-builder') . '</a>';
+            $links[] = '<a href="https://buymeacoffee.com/nutttaro" target="_blank" style="font-weight:bold;">' . esc_html__('Donate', 'nt-llms-txt-builder') . '</a>';
         }
         return $links;
     }
