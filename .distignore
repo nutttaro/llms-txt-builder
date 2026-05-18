@@ -1,0 +1,13 @@
+# Development files — excluded from plugin distribution
+.git
+.gitignore
+.distignore
+svn/
+tests/
+vendor/
+composer.json
+composer.lock
+phpunit.xml
+phpunit.xml.dist
+CLAUDE.md
+.phpunit.result.cache

@@ -3,9 +3,9 @@ Contributors: nutttaro
 Donate link: https://buymeacoffee.com/nutttaro
 Tags: llms, ai, seo, sitemap, content-discovery
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,25 @@ Yes! There's a "Clear Cache" button in the plugin settings page, and you can als
 
 == Changelog ==
 
+= 1.1.0 =
+* New: llms.txt spec-compliant output with markdown titles and links
+* New: /llms-full.txt endpoint with post excerpts
+* New: Rewrite rules replace REQUEST_URI check for better performance
+* New: Auto-invalidate cache when tracked posts or terms change
+* New: Redesigned settings page with card layout, live preview panel, and cache status indicator
+* New: Copy-to-clipboard buttons for endpoint URLs
+* New: Select All / None toggles for post type and taxonomy checkboxes
+* New: Permalink flush detection with guidance notice on fresh installs
+* New: PHPUnit test infrastructure with content generation and cache invalidation tests
+* Fix: Cache duration documented as 1 hour but was 24 hours — README corrected
+* Fix: Regenerate button showing [object Object] instead of success message
+* Fix: Live preview not loading due to cached old JavaScript
+* Fix: Endpoint action button icons not vertically centered
+* Fix: Content Selection checkboxes styled as clean bordered list with item counts
+* Fix: Asset versioning uses filemtime for automatic cache busting
+* Fix: Tested up to bumped to WordPress 6.9
+* Fix: Plugin check issues — translators comments, test bootstrap prefixing, .distignore
+
 = 1.0.0 =
 * Initial release
 * Basic LLMs.txt generation
@@ -118,6 +137,9 @@ Yes! There's a "Clear Cache" button in the plugin settings page, and you can als
 * AJAX-powered generation and cache clearing
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Major update: spec-compliant output, /llms-full.txt endpoint, redesigned settings UI with live preview, auto-cache invalidation, and rewrite rules for better performance. Visit Settings > Permalinks and click Save after updating.
 
 = 1.0.0 =
 Initial release of NT LLMs.txt Builder plugin.

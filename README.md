@@ -49,51 +49,45 @@ Each post, page, or custom post type includes a meta box that allows you to:
 
 ### Accessing LLMs.txt
 
-Once activated, your LLMs.txt file will be available at:
+Once activated, two endpoints are available:
 ```
-https://yourdomain.com/llms.txt
+https://yourdomain.com/llms.txt        # Standard: titles and links
+https://yourdomain.com/llms-full.txt   # Full: titles, links, and excerpts
 ```
 
 ### Example LLMs.txt Output
 
+The output follows the [llms.txt specification](https://llmstxt.org) format:
+
 ```
-# LLMs.txt for My WordPress Site
-# Generated on: 2024-01-15 10:30:00
-# URL: https://example.com
+# My WordPress Site
 
-# Project Overview
-This is a WordPress website with the following content structure:
+> A brief description of the site
 
-# Homepage
-https://example.com
+## Pages
 
-# Pages
-https://example.com/about/
-https://example.com/contact/
-https://example.com/privacy-policy/
+- [About Us](https://example.com/about/)
+- [Contact](https://example.com/contact/)
 
-# Posts
-https://example.com/2024/01/15/my-first-post/
-https://example.com/2024/01/14/another-post/
+## Posts
 
-# Categories
-https://example.com/category/technology/
-https://example.com/category/business/
+- [My First Post](https://example.com/2024/01/15/my-first-post/)
+- [Another Post](https://example.com/2024/01/14/another-post/)
 
-# Tags
-https://example.com/tag/wordpress/
-https://example.com/tag/development/
+## Categories
 
-# WooCommerce
-## Product Categories
-https://example.com/product-category/electronics/
-https://example.com/product-category/clothing/
+- [Technology](https://example.com/category/technology/)
+- [Business](https://example.com/category/business/)
 
 ## Products
-https://example.com/product/sample-product/
-https://example.com/product/another-product/
 
-# End of LLMs.txt
+- [Sample Product](https://example.com/product/sample-product/)
+```
+
+The `llms-full.txt` variant includes excerpts after each link:
+
+```
+- [My First Post](https://example.com/2024/01/15/my-first-post/): An introduction to our blog covering...
 ```
 
 ## WooCommerce Integration
@@ -115,8 +109,10 @@ The plugin automatically detects and allows configuration for:
 
 ## Caching
 
-The LLMs.txt content is cached for 1 hour by default. This improves performance and reduces server load. The cache is automatically cleared when:
+The LLMs.txt content is cached for 24 hours by default. This improves performance and reduces server load. The cache is automatically cleared when:
 
+- Any tracked post type is published, unpublished, or trashed
+- Any tracked taxonomy term is created, edited, or deleted
 - Plugin settings are updated
 - A post with cache clearing enabled is updated
 - Manual cache clearing is triggered
@@ -128,6 +124,25 @@ The LLMs.txt content is cached for 1 hour by default. This improves performance 
 - WooCommerce 3.0 or higher (for WooCommerce features)
 
 ## Changelog
+
+### Version 1.1.0
+- New: llms.txt spec-compliant output with markdown titles and links
+- New: `/llms-full.txt` endpoint with post excerpts
+- New: Rewrite rules replace `REQUEST_URI` check for better performance
+- New: Auto-invalidate cache when tracked posts or terms change
+- New: Redesigned settings page with card layout, live preview panel, and cache status indicator
+- New: Copy-to-clipboard buttons for endpoint URLs
+- New: Select All / None toggles for post type and taxonomy checkboxes
+- New: Permalink flush detection with guidance notice on fresh installs
+- New: PHPUnit test infrastructure with content generation and cache invalidation tests
+- Fix: Cache duration documented as 1 hour but was 24 hours — README corrected
+- Fix: Regenerate button showing `[object Object]` instead of success message
+- Fix: Live preview not loading due to cached old JavaScript
+- Fix: Endpoint action button icons not vertically centered
+- Fix: Content Selection checkboxes styled as clean bordered list with item counts
+- Fix: Asset versioning uses `filemtime` for automatic cache busting
+- Fix: Tested up to bumped to WordPress 6.9
+- Fix: Plugin check issues — translators comments, test bootstrap prefixing, `.distignore`
 
 ### Version 1.0.0
 - Initial release

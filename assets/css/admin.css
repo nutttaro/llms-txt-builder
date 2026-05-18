@@ -1,0 +1,496 @@
+/* ============================================================
+   NT LLMs.txt Builder — Admin Settings
+   ============================================================ */
+
+/* --- Page header --- */
+.ntllms-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 20px 0 24px;
+}
+
+.ntllms-header h1 {
+	margin: 0;
+	padding: 0;
+}
+
+.ntllms-header .ntllms-version {
+	background: #f0f0f1;
+	color: #50575e;
+	font-size: 12px;
+	padding: 2px 8px;
+	border-radius: 3px;
+	font-weight: 400;
+}
+
+/* --- Card containers --- */
+.ntllms-card {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 24px;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.ntllms-card h2 {
+	margin: 0 0 4px;
+	padding: 0;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.ntllms-card h2 .dashicons {
+	margin-right: 6px;
+	color: #646970;
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	vertical-align: text-bottom;
+}
+
+.ntllms-card .ntllms-card-desc {
+	color: #646970;
+	font-size: 13px;
+	margin: 0 0 16px;
+}
+
+/* --- Permalink notice --- */
+.ntllms-permalink-notice {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	padding: 10px 14px;
+	margin-bottom: 16px;
+	background: #fcf9e8;
+	border: 1px solid #dba617;
+	border-left-width: 4px;
+	border-radius: 4px;
+	font-size: 13px;
+	color: #1d2327;
+	line-height: 1.5;
+}
+
+.ntllms-permalink-notice .dashicons {
+	color: #dba617;
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+	margin-top: 1px;
+}
+
+.ntllms-permalink-notice a {
+	font-weight: 600;
+}
+
+/* --- Endpoints bar --- */
+.ntllms-endpoints {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.ntllms-endpoint-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex: 1 1 300px;
+	min-width: 0;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 10px 14px;
+}
+
+.ntllms-endpoint-label {
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #50575e;
+	white-space: nowrap;
+	min-width: 40px;
+}
+
+.ntllms-endpoint-url {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-family: Consolas, Monaco, monospace;
+	font-size: 13px;
+	color: #2271b1;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 3px;
+	padding: 4px 8px;
+	cursor: text;
+	user-select: all;
+}
+
+.ntllms-endpoint-actions {
+	display: flex;
+	gap: 4px;
+	white-space: nowrap;
+}
+
+.ntllms-endpoint-actions .button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 8px;
+	min-height: 30px;
+	min-width: 30px;
+	text-decoration: none;
+}
+
+.ntllms-copy-btn .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+}
+
+.ntllms-copy-btn.copied {
+	color: #00a32a;
+	border-color: #00a32a;
+}
+
+/* --- Cache status --- */
+.ntllms-cache-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 16px;
+	padding-top: 16px;
+	border-top: 1px solid #f0f0f1;
+}
+
+.ntllms-cache-info {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	color: #50575e;
+}
+
+.ntllms-cache-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	display: inline-block;
+	flex-shrink: 0;
+}
+
+.ntllms-cache-dot.active {
+	background: #00a32a;
+}
+
+.ntllms-cache-dot.empty {
+	background: #dba617;
+}
+
+.ntllms-cache-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.ntllms-cache-actions .button .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+	margin-right: 2px;
+}
+
+/* --- Two-column layout --- */
+.ntllms-columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	align-items: start;
+}
+
+@media (max-width: 960px) {
+	.ntllms-columns {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* --- Checkbox groups --- */
+.ntllms-checkbox-group {
+	margin-bottom: 20px;
+}
+
+.ntllms-checkbox-group:last-child {
+	margin-bottom: 0;
+}
+
+.ntllms-checkbox-group-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.ntllms-checkbox-group-header h3 {
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1d2327;
+}
+
+.ntllms-toggle-links {
+	font-size: 12px;
+}
+
+.ntllms-toggle-links a {
+	text-decoration: none;
+	color: #2271b1;
+	cursor: pointer;
+}
+
+.ntllms-toggle-links a:hover {
+	color: #135e96;
+}
+
+.ntllms-toggle-links .sep {
+	color: #c3c4c7;
+	margin: 0 4px;
+}
+
+.ntllms-checkbox-list {
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.ntllms-checkbox-item {
+	display: flex;
+	align-items: center;
+	padding: 0;
+	border-bottom: 1px solid #f0f0f1;
+	transition: background 0.15s;
+}
+
+.ntllms-checkbox-item:last-child {
+	border-bottom: 0;
+}
+
+.ntllms-checkbox-item:hover {
+	background: #f6f7f7;
+}
+
+.ntllms-checkbox-item label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+	font-size: 13px;
+	width: 100%;
+	padding: 9px 12px;
+	margin: 0;
+}
+
+.ntllms-checkbox-item .ntllms-count {
+	color: #a7aaad;
+	font-size: 12px;
+	margin-left: auto;
+	background: #f0f0f1;
+	padding: 1px 7px;
+	border-radius: 10px;
+	min-width: 16px;
+	text-align: center;
+}
+
+/* --- Toggle options (archives, author pages) --- */
+.ntllms-toggle-options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	padding-top: 16px;
+	border-top: 1px solid #f0f0f1;
+}
+
+.ntllms-toggle-option {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	font-size: 13px;
+}
+
+.ntllms-toggle-option label {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+/* --- Overview textarea --- */
+.ntllms-overview-textarea {
+	width: 100%;
+	min-height: 100px;
+	font-size: 13px;
+	padding: 8px 12px;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+	resize: vertical;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.ntllms-overview-textarea:focus {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+	outline: none;
+}
+
+.ntllms-overview-hint {
+	display: flex;
+	align-items: flex-start;
+	gap: 6px;
+	margin-top: 8px;
+	padding: 8px 10px;
+	background: #f0f6fc;
+	border: 1px solid #c5d9ed;
+	border-radius: 3px;
+	font-size: 12px;
+	color: #2c3338;
+}
+
+.ntllms-overview-hint .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: #2271b1;
+	flex-shrink: 0;
+	margin-top: 1px;
+}
+
+/* --- Preview panel --- */
+.ntllms-preview-panel {
+	position: sticky;
+	top: 46px;
+}
+
+.ntllms-preview-content {
+	background: #1d2327;
+	color: #c3c4c7;
+	font-family: Consolas, Monaco, monospace;
+	font-size: 12px;
+	line-height: 1.6;
+	padding: 16px;
+	border-radius: 4px;
+	max-height: 500px;
+	overflow-y: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.ntllms-preview-content .ntllms-pre-h1 {
+	color: #72aee6;
+	font-weight: 700;
+	font-size: 14px;
+}
+
+.ntllms-preview-content .ntllms-pre-h2 {
+	color: #72aee6;
+	font-weight: 600;
+}
+
+.ntllms-preview-content .ntllms-pre-blockquote {
+	color: #a7aaad;
+	font-style: italic;
+}
+
+.ntllms-preview-content .ntllms-pre-link {
+	color: #00a32a;
+}
+
+.ntllms-preview-empty {
+	text-align: center;
+	padding: 40px 16px;
+	color: #a7aaad;
+}
+
+.ntllms-preview-empty .dashicons {
+	font-size: 36px;
+	width: 36px;
+	height: 36px;
+	display: block;
+	margin: 0 auto 12px;
+}
+
+.ntllms-preview-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 12px;
+}
+
+.ntllms-preview-header .ntllms-preview-variant {
+	font-size: 12px;
+}
+
+.ntllms-preview-header .ntllms-preview-variant a {
+	text-decoration: none;
+	padding: 3px 8px;
+	border-radius: 3px;
+	color: #50575e;
+	cursor: pointer;
+}
+
+.ntllms-preview-header .ntllms-preview-variant a.active {
+	background: #2271b1;
+	color: #fff;
+}
+
+.ntllms-preview-header .ntllms-preview-variant a:not(.active):hover {
+	background: #f0f0f1;
+}
+
+/* --- AJAX result notices --- */
+#llms-txt-result .notice {
+	margin: 0;
+}
+
+/* --- Save bar --- */
+.ntllms-save-bar {
+	margin-top: 4px;
+}
+
+/* --- Loading spinner --- */
+.ntllms-spinner {
+	visibility: visible;
+	float: none;
+	margin: 0;
+	vertical-align: middle;
+}
+
+/* --- Responsive tweaks --- */
+@media (max-width: 600px) {
+	.ntllms-endpoint-row {
+		flex-wrap: wrap;
+	}
+
+	.ntllms-endpoint-url {
+		width: 100%;
+	}
+
+	.ntllms-cache-bar {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.ntllms-checkbox-list {
+		border-radius: 4px;
+	}
+}

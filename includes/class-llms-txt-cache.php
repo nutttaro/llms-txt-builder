@@ -19,46 +19,54 @@ if (!defined('ABSPATH')) {
  * @since 1.0.0
  */
 class LLMs_TXT_Cache {
-    
+
     /**
      * Constructor
      */
     public function __construct() {
         // Constructor can be empty for now
     }
-    
+
     /**
-     * Clear cache
+     * Clear standard llms.txt cache
      */
     public function clear_cache() {
         return delete_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY);
     }
-    
+
+    /**
+     * Clear both standard and full caches
+     */
+    public function clear_all_cache() {
+        delete_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY);
+        delete_transient(NT_LLMS_TXT_BUILDER_FULL_CACHE_KEY);
+    }
+
     /**
      * Get cached content
      */
     public function get_cached_content() {
         return get_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY);
     }
-    
+
     /**
      * Set cached content
      */
     public function set_cached_content($content) {
         return set_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY, $content, NT_LLMS_TXT_BUILDER_CACHE_DURATION);
     }
-    
+
     /**
      * Check if cache exists
      */
     public function has_cache() {
         return get_transient(NT_LLMS_TXT_BUILDER_CACHE_KEY) !== false;
     }
-    
+
     /**
      * Get cache duration
      */
     public function get_cache_duration() {
         return NT_LLMS_TXT_BUILDER_CACHE_DURATION;
     }
-} 
+}

@@ -105,7 +105,7 @@ class LLMs_TXT_Meta_Box {
         // Clear cache if requested
         if ($clear_cache === '1') {
             $llms_txt = LLMs_TXT_Generator::get_instance();
-            $llms_txt->cache->clear_cache();
+            $llms_txt->cache->clear_all_cache();
         }
     }
 } 
