@@ -10,4 +10,5 @@ composer.lock
 phpunit.xml
 phpunit.xml.dist
 CLAUDE.md
+README.md
 .phpunit.result.cache
