@@ -54,6 +54,13 @@ class LLMs_TXT_Generator {
     public $meta_box;
 
     /**
+     * Abilities API class instance
+     *
+     * @var LLMs_TXT_Abilities
+     */
+    public $abilities;
+
+    /**
      * Get plugin instance
      *
      * @return LLMs_TXT_Generator
@@ -105,6 +112,9 @@ class LLMs_TXT_Generator {
 
         require_once NT_LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-meta-box.php';
         $this->meta_box = new LLMs_TXT_Meta_Box();
+
+        require_once NT_LLMS_TXT_BUILDER_PLUGIN_PATH . 'includes/class-llms-txt-abilities.php';
+        $this->abilities = new LLMs_TXT_Abilities();
     }
 
     /**

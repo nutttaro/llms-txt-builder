@@ -18,8 +18,10 @@ delete_option('ntllms_txt_builder_last_generated');
 delete_transient('ntllms_txt_builder_cache_data');
 delete_transient('ntllms_txt_builder_full_cache_data');
 
-// Clean up any other plugin data if needed
-// Note: We don't delete the LLMs.txt file as it might be useful to keep
+// Clean up per-post meta
+global $wpdb;
+$wpdb->delete($wpdb->postmeta, array('meta_key' => '_ntllms_txt_builder_ignore_page'));
+$wpdb->delete($wpdb->postmeta, array('meta_key' => '_ntllms_txt_builder_clear_cache'));
 
 // Flush rewrite rules
 flush_rewrite_rules(); 

@@ -3,9 +3,9 @@ Contributors: nutttaro
 Donate link: https://buymeacoffee.com/nutttaro
 Tags: llms, ai, seo, sitemap, content-discovery
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,15 @@ Yes! There's a "Clear Cache" button in the plugin settings page, and you can als
 
 == Changelog ==
 
+= 1.2.0 =
+* New: WordPress 7.0 compatibility — tested up to 7.0
+* New: Block editor sidebar panel (PluginDocumentSettingPanel) replaces classic meta box in Gutenberg, preserving collaboration mode
+* New: Post meta registered with REST API (show_in_rest) for block editor support
+* New: Classic meta box kept as fallback for the classic editor via __back_compat_meta_box
+* New: WordPress 7.0 Abilities API integration — registers llms.txt content as a discoverable ability for AI agents (backward-compatible with WP < 7.0)
+* Fix: Cache action button icons not vertically aligned with text
+* Fix: Uninstall now cleans up per-post meta from wp_postmeta
+
 = 1.1.0 =
 * New: llms.txt spec-compliant output with markdown titles and links
 * New: /llms-full.txt endpoint with post excerpts
@@ -137,6 +146,9 @@ Yes! There's a "Clear Cache" button in the plugin settings page, and you can als
 * AJAX-powered generation and cache clearing
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+WordPress 7.0 support: block editor sidebar panel replaces classic meta box (classic editor still supported), Abilities API integration for AI agent discoverability.
 
 = 1.1.0 =
 Major update: spec-compliant output, /llms-full.txt endpoint, redesigned settings UI with live preview, auto-cache invalidation, and rewrite rules for better performance. Visit Settings > Permalinks and click Save after updating.

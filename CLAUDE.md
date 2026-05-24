@@ -35,7 +35,8 @@ All classes live under the `NT\LLMSTXT` namespace. The singleton `LLMs_TXT_Gener
 | `includes/class-llms-txt-generator-content.php` | `LLMs_TXT_Generator_Content` | Builds llms.txt/llms-full.txt output following the spec (markdown with titles/links/excerpts) |
 | `includes/class-llms-txt-admin.php` | `LLMs_TXT_Admin` | Settings page, AJAX handlers for generate/clear-cache, admin script enqueue |
 | `includes/class-llms-txt-cache.php` | `LLMs_TXT_Cache` | Wrapper around WordPress transients for both standard and full cache keys |
-| `includes/class-llms-txt-meta-box.php` | `LLMs_TXT_Meta_Box` | Per-post meta box: "ignore this post" and "clear cache on update" checkboxes |
+| `includes/class-llms-txt-meta-box.php` | `LLMs_TXT_Meta_Box` | Per-post controls: block editor sidebar panel (PluginDocumentSettingPanel) + classic meta box fallback; registers post meta with REST API |
+| `includes/class-llms-txt-abilities.php` | `LLMs_TXT_Abilities` | WordPress 7.0 Abilities API integration (guarded, backward-compatible with WP < 7.0) |
 
 **Caching:** Two transients — `ntllms_txt_builder_cache_data` (standard) and `ntllms_txt_builder_full_cache_data` (full) — each with 24-hour TTL. Both are cleared automatically when:
 - A tracked post type is published, trashed, or changes status (`transition_post_status`)
@@ -55,6 +56,7 @@ All classes live under the `NT\LLMSTXT` namespace. The singleton `LLMs_TXT_Gener
 - **AJAX actions**: `ntllms_txt_builder_generate_file`, `ntllms_txt_builder_clear_cache_data`
 - **Post meta keys**: `_ntllms_txt_builder_clear_cache`, `_ntllms_txt_builder_ignore_page`
 - Admin JS uses jQuery (no build step), localized via `nt_llms_txt_builder` object
+- Block editor sidebar panel uses vanilla JS (no build step) via `wp.plugins.registerPlugin` + `wp.editor.PluginDocumentSettingPanel`; file: `assets/js/editor-sidebar.js`
 
 ## SVN Publishing
 

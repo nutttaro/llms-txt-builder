@@ -147,11 +147,11 @@
 	text-decoration: none;
 }
 
-.ntllms-copy-btn .dashicons {
+.ntllms-endpoint-actions .button .dashicons {
 	font-size: 16px;
 	width: 16px;
 	height: 16px;
-	vertical-align: text-bottom;
+	line-height: 16px;
 }
 
 .ntllms-copy-btn.copied {
@@ -200,12 +200,17 @@
 	gap: 8px;
 }
 
+.ntllms-cache-actions .button {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
 .ntllms-cache-actions .button .dashicons {
 	font-size: 16px;
 	width: 16px;
 	height: 16px;
-	vertical-align: text-bottom;
-	margin-right: 2px;
+	line-height: 16px;
 }
 
 /* --- Two-column layout --- */
