@@ -13,18 +13,19 @@ Generate an LLMs.txt file that helps AI models and large language models underst
 
 == Description ==
 
-**LLMs.txt Builder** creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
+**LLMs.txt Builder** creates spec-compliant `/llms.txt` and `/llms-full.txt` endpoints (similar to robots.txt) that help AI models and large language models (LLMs) understand your website structure and content. The standard endpoint lists all published content with titles and URLs; the full variant adds post excerpts for richer context.
 
 = Key Features =
 
-* **Post and Page Support**: Automatically includes page, post, categories, and tags
+* **Two Endpoints**: `/llms.txt` (titles + URLs) and `/llms-full.txt` (titles + URLs + excerpts)
+* **Post and Page Support**: Automatically includes pages, posts, categories, and tags
 * **WooCommerce Support**: Automatically includes product pages, categories, and tags
 * **Custom Post Types**: Configurable support for any custom post types
 * **Custom Taxonomies**: Includes all public taxonomies and their terms
-* **Admin Settings Page**: Easy configuration through WordPress admin
-* **Caching System**: LLMs.txt content is cached for performance
-* **Cache Management**: Manual cache clearing and automatic clearing on content updates
-* **Meta Box Integration**: Option to clear cache when individual posts are updated
+* **Block Editor Support**: Native sidebar panel in the block editor; classic meta box fallback for the classic editor
+* **Admin Settings Page**: Easy configuration with live preview through WordPress admin
+* **Caching System**: LLMs.txt content is cached for 24 hours with automatic invalidation on content changes
+* **WordPress 7.0 Abilities API**: Registers llms.txt as a discoverable ability for AI agents (backward-compatible with older WordPress versions)
 
 = What is LLMs.txt? =
 

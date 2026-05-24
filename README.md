@@ -1,21 +1,22 @@
 # LLMs.txt Builder
 
-A WordPress plugin that generates an LLMs.txt file containing all links from your website, with support for WooCommerce, custom post types, and custom taxonomies.
+A WordPress plugin that generates spec-compliant `/llms.txt` and `/llms-full.txt` endpoints, with support for WooCommerce, custom post types, and custom taxonomies.
 
 ## Description
 
-This plugin creates an LLMs.txt file (similar to robots.txt) that helps AI models and large language models (LLMs) understand your website structure and content. The file is accessible at `https://yourdomain.com/llms.txt` and includes links to all your published content.
+This plugin creates spec-compliant `/llms.txt` and `/llms-full.txt` endpoints (similar to robots.txt) that help AI models and large language models (LLMs) understand your website structure and content. The standard endpoint lists all published content with titles and URLs; the full variant adds post excerpts for richer context.
 
 ## Features
 
-- **Post and Page Support**: Automatically includes page, post, categories, and tags
+- **Two Endpoints**: `/llms.txt` (titles + URLs) and `/llms-full.txt` (titles + URLs + excerpts)
+- **Post and Page Support**: Automatically includes pages, posts, categories, and tags
 - **WooCommerce Support**: Automatically includes product pages, categories, and tags
 - **Custom Post Types**: Configurable support for any custom post types
 - **Custom Taxonomies**: Includes all public taxonomies and their terms
-- **Admin Settings Page**: Easy configuration through WordPress admin
-- **Caching System**: LLMs.txt content is cached for performance
-- **Cache Management**: Manual cache clearing and automatic clearing on content updates
-- **Meta Box Integration**: Option to clear cache when individual posts are updated
+- **Block Editor Support**: Native sidebar panel in the block editor; classic meta box fallback for the classic editor
+- **Admin Settings Page**: Easy configuration with live preview through WordPress admin
+- **Caching System**: LLMs.txt content is cached for 24 hours with automatic invalidation on content changes
+- **WordPress 7.0 Abilities API**: Registers llms.txt as a discoverable ability for AI agents (backward-compatible with older WordPress versions)
 
 ## Installation
 
@@ -124,6 +125,15 @@ The LLMs.txt content is cached for 24 hours by default. This improves performanc
 - WooCommerce 3.0 or higher (for WooCommerce features)
 
 ## Changelog
+
+### Version 1.2.0
+- New: WordPress 7.0 compatibility — tested up to 7.0
+- New: Block editor sidebar panel (PluginDocumentSettingPanel) replaces classic meta box in Gutenberg, preserving collaboration mode
+- New: Post meta registered with REST API (`show_in_rest`) for block editor support
+- New: Classic meta box kept as fallback for the classic editor via `__back_compat_meta_box`
+- New: WordPress 7.0 Abilities API integration — registers llms.txt content as a discoverable ability for AI agents (backward-compatible with WP < 7.0)
+- Fix: Cache action button icons not vertically aligned with text
+- Fix: Uninstall now cleans up per-post meta from `wp_postmeta`
 
 ### Version 1.1.0
 - New: llms.txt spec-compliant output with markdown titles and links
