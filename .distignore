@@ -9,6 +9,7 @@ composer.json
 composer.lock
 phpunit.xml
 phpunit.xml.dist
+CHANGELOG.md
 CLAUDE.md
 README.md
 .phpunit.result.cache
